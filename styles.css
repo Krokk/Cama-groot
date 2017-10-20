@@ -1,0 +1,131 @@
+body
+{
+	background-color: LavenderBlush;
+	margin: 0 0 0 0;
+}
+.header
+{
+	position: relative;
+	text-align: center;
+	background-color: #ffccdd;
+	height: 12vw;
+	max-height: 3.5cm;
+	width: 100%;
+}
+.main
+{
+	margin: auto;
+	margin-top: 1vw;
+	width: 80%;
+	height: 80%;
+}
+.mainreg
+{
+	margin: auto;
+	margin-top: 10vw;
+	padding: 4vw;
+	width: 15%;
+
+}
+.footer
+{
+	position: absolute;
+	bottom: 0;
+	background-color: #ffccdd;
+	height: 12vw;
+	max-height: 3.5cm;
+	width: 100%;
+
+}
+.box1
+{
+	position: relative;
+	width: 15vw;
+	height: 100%;
+	float: right;
+}
+
+.title
+{
+
+	position: relative;
+	font-family: arial;
+	background-color: #ffccdd;
+	border: none;
+	margin: auto;
+	margin-left: 25vw;
+	float: left;
+	height: 100%;
+	width: 50%;
+	font-size: 5vw;
+	color: black;
+}
+
+.title:focus {outline:0;}
+
+.title:hover
+{
+	background-color: #ffccdd;
+}
+.login
+{
+	height: 1.7vw;
+	width: 14.1vw;
+	margin-left: 0.6vw;
+	margin-top: -2vw;
+	border: none;
+}
+.password
+{
+	height: 1.7vw;
+	width: 14.1vw;
+	margin-left: 0.6vw;
+	margin-top: 2vw;
+	border: none;
+}
+.button
+{
+	position: relative;
+	float: right;
+	width: 100%;
+	height: 50%;
+	font-size: 2vw;
+	font-family: arial;
+	color: white;
+	background-color: #ffccdd;
+	border: none;
+}
+
+.button:hover
+{
+	background-color: #ff4d88;
+}
+
+.button:active
+{
+	background-color: black;
+}
+
+.registerbutton
+{
+	position: relative;
+	margin-top: 2vw;
+	width: 14.1vw;
+	height: 2vw;
+	margin-left: 0.6vw;
+	background-color: LavenderBlush;
+	border: none;
+	font-size: 1vw;
+}
+
+.registerbutton {outline:0;}
+.registerbutton:active
+{
+	background-color: black;
+	color: white;
+}
+
+
+.button:focus {outline:0;}
+
+input:focus {outline:0;}
