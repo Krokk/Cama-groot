@@ -1,7 +1,6 @@
 <?php
 
  ?>
-
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
@@ -10,7 +9,7 @@
 	</head>
 	<body>
 		<div class="header">
-			<a href="index.html"><button class="title" name="button">CAMAGRU</button><a/>
+			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
 		</div>
 		<div class="main">
 
