@@ -5,13 +5,31 @@ function checkuserindb($username)
 }
  if (isset($_POST[clickme]))
  {
-	$password = hash("whirlpool", $_POST[password]);
-	$bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-	$req = $bdd->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
-	$req->execute(array(
-		':username' => $_POST['username'],
-		':password' => $password
-	));
+	// $username = $_POST['username'];	
+	// $request = $con->prepare("SELECT COUNT(*) AS num_rows FROM users WHERE username= ':name' LIMIT 1;");
+	// $request->bindParam(':name', $username);
+	// $request->execute();	
+	// if ($request->rowCount() > 0)
+	// {
+	// 	echo "exists!";
+	// } 
+	// else 
+	// {	
+		try
+			{
+				$password = hash("whirlpool", $_POST[password]);
+				$bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$req = $bdd->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+				$req->execute(array(
+					':username' => $_POST['username'],
+					':password' => $password
+				));
+			}
+		catch(PDOException $e)
+		{
+			echo "Couldn't write in database: " . $e->getMessage();
+		}
+	// }
 }
 ?>
 <html>

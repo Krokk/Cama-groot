@@ -9,7 +9,7 @@
 	}
 	catch(PDOException $e)
 	{
-		echo "Connection failed: " . $e->getMessage();
+		echo "Error creating DataBase: " . $e->getMessage();	
 	}
 	try
 	{

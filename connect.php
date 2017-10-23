@@ -7,6 +7,7 @@
 	}
 	catch(PDOException $e)
 	{
+		echo "DataBase connection failed: " . $e->getMessage();
 		header("location:install.php");
 	}
 ?>
