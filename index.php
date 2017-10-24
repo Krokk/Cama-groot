@@ -1,20 +1,18 @@
 <?php
-function checkuserindb($username)
+if (isset($_POST[clickme]))
 {
 	$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");	
-}
- if (isset($_POST[clickme]))
- {
-	// $username = $_POST['username'];	
-	// $request = $con->prepare("SELECT COUNT(*) AS num_rows FROM users WHERE username= ':name' LIMIT 1;");
-	// $request->bindParam(':name', $username);
-	// $request->execute();	
-	// if ($request->rowCount() > 0)
-	// {
-	// 	echo "exists!";
-	// } 
-	// else 
-	// {	
+	$username = $_POST['username'];	
+	$request = $con->prepare("SELECT username FROM users WHERE username = :name;");
+	$request->bindParam(':name', $username);
+	$request->execute();
+	if ($request->rowCount() > 0)
+	{
+		// ameliorer pour que le message derreur saffiche dans le modal directement
+		echo "User name already taken	";
+	} 
+	else 
+	{	
 		try
 			{
 				$password = hash("whirlpool", $_POST[password]);
@@ -22,14 +20,13 @@ function checkuserindb($username)
 				$req = $bdd->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
 				$req->execute(array(
 					':username' => $_POST['username'],
-					':password' => $password
-				));
+					':password' => $password));
 			}
 		catch(PDOException $e)
 		{
 			echo "Couldn't write in database: " . $e->getMessage();
 		}
-	// }
+	}
 }
 ?>
 <html>
@@ -51,14 +48,10 @@ function checkuserindb($username)
 			<div class="container">
 			  <label><b>Users</b></label>
 			  <input type="text" placeholder="Enter user name" name="username" required>
-		
 			  <label><b>Password</b></label>
 			  <input type="password" placeholder="Enter Password" name="password" required>
-		
 			  <label><b>Repeat Password</b></label>
-			  <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-			  <input type="checkbox" checked="checked"> Remember me
-		
+			  <input type="password" placeholder="Repeat Password" name="psw-repeat" required>		
 			  <div class="clearfix">
 				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 				<button type="submit" class="signupbtn" name="clickme">Sign Up</button>
@@ -66,7 +59,6 @@ function checkuserindb($username)
 			</div>
 		  </form>
 		</div>
-		
 		<script>
 		var modal = document.getElementById('id01');	
 		//  fermer la fenetre si on clique a l'exterieur
@@ -82,9 +74,6 @@ function checkuserindb($username)
 		<div class="main">
 		</div>
 		<div class="footer">
-
-		</div>
-
-		
+		</div>	
 	</body>
 </html>
