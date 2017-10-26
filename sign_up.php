@@ -2,21 +2,21 @@
 session_start();
 if (isset($_POST[clickme]))
 {
+    //TODO : englober tout les tests de check dans une fonction, et seulement si tout les tests sont passes passer dans le else
     if ((isset($_POST[clickme])) and (($_POST['password']!= $_POST['psw-repeat'])))
     {
         $psw_msg = "<div>Your password must match</div><br>";
     }
-    if (!preg_match("/^[a-zA-Z]*$/",$username))
+    if (!preg_match("/^[a-zA-Z]*$/",$username = $_POST['username']))
     {
         $user_msg = "Invalid username use only letter or numbers<br>"; 
     }
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email = $_POST['email'], FILTER_VALIDATE_EMAIL)) {
       $email_msg = "Invalid email format<br>"; 
     }
     else
     { 
         $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");	
-        $username = $_POST['username'];	
         $request = $con->prepare("SELECT username FROM users WHERE username = :name;");
         $request->bindParam(':name', $username);
         $request->execute();
@@ -60,7 +60,7 @@ if (isset($_POST[clickme]))
 		    <a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
 		</div>
 		<div class="main">
-            <form class="modal-content" action="sign_up.php" method="post">
+            <form class="modal-content" action="#" method="post">
             <div class="container">
                 <label><b>Users</b></label>
                 <input type="text" placeholder="Enter user name" name="username" required>
