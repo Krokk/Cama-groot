@@ -6,6 +6,13 @@ if (isset($_POST[clickme]))
     {
         $psw_msg = "<div>Your password must match</div><br>";
     }
+    if (!preg_match("/^[a-zA-Z]*$/",$username))
+    {
+        $user_msg = "Invalid username use only letter or numbers<br>"; 
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $email_msg = "Invalid email format<br>"; 
+    }
     else
     { 
         $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");	
@@ -15,19 +22,19 @@ if (isset($_POST[clickme]))
         $request->execute();
         if ($request->rowCount() > 0)
         {
-            // ameliorer pour que le message derreur saffiche dans le modal directement
             $user_msg = "<div>Username already taken</div><br>";
-        } 
+        }
         else 
         {	
             try
                 {
                     $password = hash("whirlpool", $_POST[password]);
                     $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                    $req = $bdd->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+                    $req = $bdd->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
                     $req->execute(array(
                         ':username' => $_POST['username'],
-                        ':password' => $password));
+                        ':password' => $password,
+                        ':email' => $_POST['email']));
                 }
             catch(PDOException $e)
             {
@@ -59,6 +66,11 @@ if (isset($_POST[clickme]))
                 <input type="text" placeholder="Enter user name" name="username" required>
                 <?php
 		        	if(isset($user_msg)){ echo $user_msg;}
+                ?>
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter email address" name="email" required>
+                <?php
+		        	if(isset($email_msg)){ echo $email_msg;}
 		        ?>
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>

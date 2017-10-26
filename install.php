@@ -15,7 +15,14 @@
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$qry = "CREATE TABLE users (username VARCHAR(255), password VARCHAR(255))";
+		$qry = "CREATE TABLE `db_camagru`.`users` (
+			`id` INT NOT NULL AUTO_INCREMENT,
+			`username` VARCHAR(100) NOT NULL,
+			`email` VARCHAR(100) NOT NULL,
+			`password` VARCHAR(100) NOT NULL,
+			`avatar` VARCHAR(100) NOT NULL,
+			PRIMARY KEY (`id`));
+		  ";
 		$conn->exec($qry);
 	}
 	catch(PDOException $e)

@@ -17,7 +17,10 @@ session_start();
 			{
 				// echo "<div>Bonjour " . $_SESSION["users"] . "!</div>";
 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION["users"] ."</button></a>";
-				echo '<a href="log_out.php"><button class="button" type="button" name="Logout">Log out</button></a>';
+				
+				// mettre un bouton qui call logout
+				// <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
+				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
 			}
 			else
 			{
