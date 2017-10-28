@@ -1,51 +1,56 @@
 <?php
 session_start();
-if (isset($_POST[clickme]))
+$_SESSION["message"] = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+//if (isset($_POST[clickme])) ********* user can submit with empty field if page is reload
 {
-    //TODO : englober tout les tests de check dans une fonction, et seulement si tout les tests sont passes passer dans le else
-    if ((isset($_POST[clickme])) and (($_POST['password']!= $_POST['psw-repeat'])))
+    if ($_POST['password'] == $_POST['psw-repeat'])
     {
-        $psw_msg = "<div>Your password must match</div><br>";
-    }
-    if (!preg_match("/^[a-zA-Z]*$/",$username = $_POST['username']))
-    {
-        $user_msg = "Invalid username use only letter or numbers<br>"; 
-    }
-    if (!filter_var($email = $_POST['email'], FILTER_VALIDATE_EMAIL)) {
-      $email_msg = "Invalid email format<br>"; 
+        if (preg_match("/^[a-zA-Z0-9]*$/",$username = $_POST['username']))
+        {
+            if (filter_var($email = $_POST['email'], FILTER_VALIDATE_EMAIL))
+            {
+                $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");	
+                $request = $con->prepare("SELECT username FROM users WHERE username = :name;");
+                $request->bindParam(':name', $username);
+                $request->execute();
+                if ($request->rowCount() > 0)
+                {
+                    $_SESSION['message'] ='Username already taken';
+                }
+                else 
+                {	
+                    try
+                    {
+                        $password = hash("whirlpool", $_POST[password]);
+                        $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                        $req = $bdd->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+                        $req->execute(array(
+                            ':username' => $_POST['username'],
+                            ':password' => $password,
+                            ':email' => $_POST['email']));
+                    }
+                    catch(PDOException $e)
+                    {
+                        echo "Couldn't write in database: " . $e->getMessage();
+                    }
+                        $_SESSION["users"] = $username;
+                        header( "refresh:0;url=account_created.php" );
+                }
+            }
+            else
+            {
+                $_SESSION['message'] = 'Invalid email format'; 
+            }
+        }
+        else
+        {
+            $_SESSION['message'] = 'Invalid username use only letter or numbers'; 
+        }
     }
     else
-    { 
-        $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");	
-        $request = $con->prepare("SELECT username FROM users WHERE username = :name;");
-        $request->bindParam(':name', $username);
-        $request->execute();
-        if ($request->rowCount() > 0)
-        {
-            $user_msg = "<div>Username already taken</div><br>";
-        }
-        else 
-        {	
-            try
-                {
-                    $password = hash("whirlpool", $_POST[password]);
-                    $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                    $req = $bdd->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
-                    $req->execute(array(
-                        ':username' => $_POST['username'],
-                        ':password' => $password,
-                        ':email' => $_POST['email']));
-                }
-            catch(PDOException $e)
-            {
-                echo "Couldn't write in database: " . $e->getMessage();
-            }
-            if (!$e)
-            {
-                $_SESSION["users"] = $username;
-                header( "refresh:0;url=account_created.php" );
-            }
-        }
+    {
+        $_SESSION["message"] = "Your password must match";
     }
 }
 ?>
@@ -60,23 +65,18 @@ if (isset($_POST[clickme]))
 		    <a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
 		</div>
 		<div class="main">
-            <form class="modal-content" action="#" method="post">
+            <form class="modal-content" action="sign_up.php" method="post">
             <div class="container">
+                <div class="log_error"><?= $_SESSION["message"] ?></div>
                 <label><b>Users</b></label>
                 <input type="text" placeholder="Enter user name" name="username" required>
-                <?php
-		        	if(isset($user_msg)){ echo $user_msg;}
-                ?>
+                
                 <label><b>Email</b></label>
-                <input type="text" placeholder="Enter email address" name="email" required>
-                <?php
-		        	if(isset($email_msg)){ echo $email_msg;}
-		        ?>
+                <input type="email" placeholder="Enter email address" name="email" required>
+                
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
-                <?php
-		        	if(isset($psw_msg)){ echo $psw_msg;}
-		        ?>
+                
                 <label><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" required>		
                 <div class="clearfix" style="text-align: center;">
