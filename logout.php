@@ -13,14 +13,13 @@ session_destroy();
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
 		</div>
         <div class="main">
-        <div class="error_message" style ="text-align:center;">    Logged out successfully.</div>
-        
+        <div class="error_message" style ="text-align:center;"> Logged out successfully.</div>
+
         </div></br>
-        
+
 		<div class="footer">
 
 		</div>
 
 	</body>
 </html>
-
