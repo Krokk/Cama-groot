@@ -17,13 +17,13 @@
 				':email' => $email,
 				':conflink' => $conflink
 			));
-			$resultat = $con->query("SELECT username FROM users WHERE conflink = :conflink");
-			$resultat->setFetchMode(PDO::FETCH_OBJ);
-			echo "$resultat->username";
+			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$result = $con->query("SELECT username FROM users WHERE conflink = " . "'" . $conflink . "'");
+			$donnees = $result->fetch();			
+			$_SESSION[LOGGED_ON] =	$donnees['username'];
 		}
 	}
  ?>
-
  <html>
  	<head>
  		<link rel="stylesheet" href="styles.css">

@@ -35,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     {
                         echo "Couldn't write in database: " . $e->getMessage();
                     }
-
-                        $_SESSION[LOGGED_ON] = $username;
                         $to       =  $email;
                         $subject  = 'Signup | Verification'; // Give the email a subject
                         $message  = '

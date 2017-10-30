@@ -25,7 +25,7 @@ session_start();
 			else
 			{
 				echo '<a href="sign_in.php"><button class="button" type="button" name="Login">Sign in</button></a>';
-				echo '<a href="sign_up.php"><button class="button" type="button" name="Sign up">Sign up</button></a>';
+				echo '<a href="sign_up.php"><button class="button" type="button" name="Sign up"> Register</button></a>';
 			}
 			?>
 			</div>
