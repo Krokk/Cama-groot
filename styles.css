@@ -15,7 +15,7 @@ body
 }
 
 .box1
-{	
+{
 	position: relative;
 	width: 15vw;
 	height: 100%;
@@ -50,16 +50,18 @@ body
 
 .title
 {
-	text-align: center;
+	position: relative;
 	font-family: arial;
 	background-color: #ffccdd;
 	border: none;
 	margin: auto;
+	margin-left: 25vw;
+	float: left;
 	height: 100%;
-	width: 85%;
+	width: 50%;
 	font-size: 5vw;
-	color: black;}
-
+	color: black;
+}
 .title:focus {outline:0;}
 
 .title:hover
@@ -94,6 +96,20 @@ body
 	background-color: #ffccdd;
 	border: none;
 }
+
+.button:hover
+{
+	background-color: #ff4d88;
+}
+
+.button:active
+{
+	background-color: black;
+}
+
+.button:focus {outline:0;}
+
+
 .registerbutton
 {
 	position: relative;
@@ -106,16 +122,10 @@ body
 	font-size: 1vw;
 }
 
-.modal {
-    display: block;
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    padding-top: 60px;
-}
+.registerbutton {outline:0;}
+
+input:focus {outline:0;}
+
 @media screen and (max-width: 300px) {
     .cancelbtn, .signupbtn {
        width: 100%;

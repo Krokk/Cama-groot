@@ -9,7 +9,7 @@
 	}
 	catch(PDOException $e)
 	{
-		echo "Error creating DataBase: " . $e->getMessage();	
+		echo "Error creating DataBase: " . $e->getMessage();
 	}
 	try
 	{
@@ -19,7 +19,7 @@
 			`id` INT NOT NULL AUTO_INCREMENT,
 			`username` VARCHAR(100) NOT NULL,
 			`email` VARCHAR(100) NOT NULL,
-			`url` VARCHAR(100) NOT NULL,
+			`conflink` VARCHAR(100) NOT NULL,
 			`activated` INT NOT NULL DEFAULT 0,
 			`password` VARCHAR(100) NOT NULL,
 			`avatar` VARCHAR(100),
@@ -33,5 +33,3 @@
 	}
 	$conn = null;
 ?>
-
-
