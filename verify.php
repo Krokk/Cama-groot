@@ -8,10 +8,18 @@
 		$request = $con->prepare("SELECT email, conflink, activated FROM users WHERE email = :email AND conflink = :conflink AND activated = '0'");
 		$request->execute(array(
 			':email' => $email,
-			':conflink' => $conflink));
+			':conflink' => $conflink
+		));
 		if ($request->rowCount() > 0)
 		{
-			
+			$update = $con->prepare("UPDATE users SET activated = '1' WHERE email = :email AND conflink = :conflink AND activated = '0'");
+			$update->execute(array(
+				':email' => $email,
+				':conflink' => $conflink
+			));
+			$resultat = $con->query("SELECT username FROM users WHERE conflink = :conflink");
+			$resultat->setFetchMode(PDO::FETCH_OBJ);
+			echo "$resultat->username";
 		}
 	}
  ?>
