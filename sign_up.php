@@ -28,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         $req->execute(array(
                             ':username' => $_POST['username'],
                             ':password' => $password,
-                            ':email' => $email));
+                            ':email' => $email,
+							':conflink' => $conflink));
                     }
                     catch(PDOException $e)
                     {
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         ------------------------
 
                         Please click this link to activate your account:
-                        http://localhost:8888/Camagru/verify.php?email='.$email.'&hash='.$conflink.'
+                        http://localhost:8888/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
 
                         ';
 
