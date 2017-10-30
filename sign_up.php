@@ -20,10 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
                     try
                     {
+                        $conflink = md5( rand(0,1000) );
 						$email = $_POST[email];
                         $password = hash("sha512", $_POST[password]);
                         $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                        $req = $bdd->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+                        $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink) VALUES (:username, :password, :email, :conflink)');
                         $req->execute(array(
                             ':username' => $_POST['username'],
                             ':password' => $password,
@@ -34,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         echo "Couldn't write in database: " . $e->getMessage();
                     }
 
-                        $_SESSION["LOGGED_ON"] = $username;
-                        $conflink = md5( rand(0,1000) );
+                        $_SESSION[LOGGED_ON] = $username;
                         $to       =  $email;
                         $subject  = 'Signup | Verification'; // Give the email a subject
                         $message  = '
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         ------------------------
 
                         Please click this link to activate your account:
-                        http://localhost:8888/Camagru/verify.php?email='.$email.'&hash='.$url.'
+                        http://localhost:8888/Camagru/verify.php?email='.$email.'&hash='.$conflink.'
 
                         ';
 
