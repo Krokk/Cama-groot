@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 {	
                     try
                     {
-                        $password = hash("whirlpool", $_POST[password]);
+                        $password = hash("sha512", $_POST[password]);
                         $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
                         $req = $bdd->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
                         $req->execute(array(
@@ -34,7 +34,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     {
                         echo "Couldn't write in database: " . $e->getMessage();
                     }
-                        $_SESSION["users"] = $username;
+                        
+                        // $_SESSION["users"] = $username;
+                        $url = md5( rand(0,1000) );
+                        $to      = 'remi.f@live.com';
+                        $subject = 'Signup | Verification'; // Give the email a subject 
+                        $message = '
+                         
+                        Thanks for signing up!
+                        Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+                         
+                        ------------------------
+                        Username: '.$username.'
+                        ------------------------
+                         
+                        Please click this link to activate your account:
+                        http://localhost:8888/Camagru/verify.php?email='.$email.'&hash='.$url.'
+                         
+                        ';
+                                             
+                        $headers = 'From:noreply@camagru.com' . "\r\n";
+                        mail($to, $subject, $message, $headers);
                         header( "refresh:0;url=account_created.php" );
                 }
             }

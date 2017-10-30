@@ -19,8 +19,10 @@
 			`id` INT NOT NULL AUTO_INCREMENT,
 			`username` VARCHAR(100) NOT NULL,
 			`email` VARCHAR(100) NOT NULL,
+			`url` VARCHAR(100) NOT NULL,
+			`activated` INT NOT NULL DEFAULT 0,
 			`password` VARCHAR(100) NOT NULL,
-			`avatar` VARCHAR(100) NOT NULL,
+			`avatar` VARCHAR(100),
 			PRIMARY KEY (`id`));
 		  ";
 		$conn->exec($qry);
@@ -31,3 +33,5 @@
 	}
 	$conn = null;
 ?>
+
+
