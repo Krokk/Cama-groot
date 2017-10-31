@@ -17,12 +17,12 @@
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$qry = "CREATE TABLE `db_camagru`.`users` (
 			`id` INT NOT NULL AUTO_INCREMENT,
-			`username` VARCHAR(100) NOT NULL,
-			`email` VARCHAR(100) NOT NULL,
+			`username` VARCHAR(255) NOT NULL,
+			`email` VARCHAR(255) NOT NULL,
 			`conflink` VARCHAR(255) NOT NULL,
 			`activated` INT NOT NULL DEFAULT 0,
 			`password` VARCHAR(255) NOT NULL,
-			`avatar` VARCHAR(100),
+			`avatar` VARCHAR(255),
 			PRIMARY KEY (`id`));
 		  ";
 		$conn->exec($qry);

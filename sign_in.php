@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		if ($req->rowCount() > 0)
 		{
 			$donnees = $req->fetch();			
-			$_SESSION[success] = "You are looged on " .$_POST['username'];
+			$_SESSION[login_success] = "You are looged on " .$_POST['username'];
 			$_SESSION[LOGGED_ON] =	$_POST['username'];
 			header( "refresh:3;url=index.php" );
 		}
 		else
 		{
-			$_SESSION[message] = "Username or password incorrect";
+			$_SESSION[login_err] = "Username or password incorrect";
 		}
 
 	}
@@ -57,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<div class="main">
 		<form class="modal-content" action="sign_in.php" method="post">
             <div style = "padding:14%">
-                <div class="log_error"><?= $_SESSION["message"] ?></div>
-				<div class="log_succes"><?= $_SESSION[success] ?></div>
+                <div class="log_error"><?= $_SESSION[login_err] ?></div>
+				<div class="log_succes"><?= $_SESSION[login_success] ?></div>
                 <label><b>Username</b></label>
                 <input type="text" placeholder="Enter user name" name="username" required>
 				
