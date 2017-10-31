@@ -14,13 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		if ($req->rowCount() > 0)
 		{
 			$donnees = $req->fetch();			
+			$_SESSION[success] = "You are looged on " .$_POST['username'];
 			$_SESSION[LOGGED_ON] =	$_POST['username'];
+			header( "refresh:3;url=index.php" );
+		}
+		else
+		{
+			$_SESSION[message] = "Username or password incorrect";
 		}
 
 	}
 	catch (PDOexception $e)
 	{
-		echo "Username or password is incorrect " . $e->getMessage();
+		echo "couldn't log you in : " . $e->getMessage();
 	}
 }
  ?>
@@ -37,11 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
  			<?php
  			if (isset($_SESSION[LOGGED_ON]))
  			{
- 				// echo "<div>Bonjour " . $_SESSION["users"] . "!</div>";
  				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
-
- 				// mettre un bouton qui call logout
- 				// <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
  				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
  			}
  			else
@@ -56,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<form class="modal-content" action="sign_in.php" method="post">
             <div style = "padding:14%">
                 <div class="log_error"><?= $_SESSION["message"] ?></div>
+				<div class="log_succes"><?= $_SESSION[success] ?></div>
                 <label><b>Username</b></label>
                 <input type="text" placeholder="Enter user name" name="username" required>
 				

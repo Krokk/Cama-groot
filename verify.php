@@ -53,11 +53,7 @@
  			<?php
  			if (isset($_SESSION[LOGGED_ON]))
  			{
- 				// echo "<div>Bonjour " . $_SESSION["users"] . "!</div>";
  				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
-
- 				// mettre un bouton qui call logout
- 				// <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
  				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
  			}
  			else
