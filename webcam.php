@@ -1,6 +1,6 @@
 <?php
+session_start();
 ?>
-
 
 <html>
 	<head>
@@ -16,11 +16,7 @@
 			<?php
 			if (isset($_SESSION[LOGGED_ON]))
 			{
-				// echo "<div>Bonjour " . $_SESSION["users"] . "!</div>";
 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
-				
-				// mettre un bouton qui call logout
-				// <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
 				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
 			}
 			else
@@ -36,13 +32,17 @@
 <video id="video"></video>
         <button id="startbutton">Prendre une photo</button>
         <canvas id="canvas"></canvas>
-        <img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
 		</div>
 		<div class="footer">
 		</div>	
 	</body>
 </html>
 
+
+<?php
+if ($_SESSION[LOGGED_ON])
+{
+?>
 <script type="text/javascript">  
 (function() {
 
@@ -105,3 +105,6 @@
 
 })();
 </script>
+<?php
+}
+?>
