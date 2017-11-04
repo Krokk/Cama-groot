@@ -69,7 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <div class="clearfix" style="text-align: center;">
-                    <button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Sign Up</button>
+				<a href="resetpsw.php"><button class="signup" type="button" name="resetpsw">I forgot my password</button></a>
+  
+				<button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Sign Up</button>
                 </div>
             </div>
             </form>

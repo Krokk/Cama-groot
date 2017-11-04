@@ -28,17 +28,6 @@ $_SESSION["message"] = '';
 			</div>
 		</div>
 		<div class="main">
-<<<<<<< HEAD
-			<?php
-			if (isset($_SESSION[LOGGED_ON]))
-			{
-			echo '<center>';
-            echo '<video id="video" style="align:center"></video>';
-            echo '<div><button id="startbutton">Prendre une photo</button></div>';
-			echo '<canvas id="canvas"></canvas>';
-			echo '</center>';
-			}
-=======
 		<?php
 		if (isset($_SESSION[LOGGED_ON]))
 		{
@@ -47,7 +36,6 @@ $_SESSION["message"] = '';
 			<button class="cambutton" id="startbutton">Prendre une photo</button>
 			<canvas id="canvas"></canvas></center>';
 		}
->>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
 		?>
 		</div>
 		<div class="footer">
@@ -58,29 +46,18 @@ $_SESSION["message"] = '';
 	</body>
 </html>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
 <?php
 if ($_SESSION[LOGGED_ON])
 {
 ?>
-<<<<<<< HEAD
-<script type="text/javascript">  
-=======
 <script type="text/javascript">
->>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
 (function() {
 
   var streaming = false,
       video        = document.querySelector('#video'),
       cover        = document.querySelector('#cover'),
       canvas       = document.querySelector('#canvas'),
-<<<<<<< HEAD
-=======
 	  context	   = canvas.getContext('2d'),
->>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
       width = 320,
@@ -121,27 +98,6 @@ if ($_SESSION[LOGGED_ON])
     }
   }, false);
 
-<<<<<<< HEAD
-  function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
-	console.log(data);
-    photo.setAttribute('src', data);
-  }
-
-  startbutton.addEventListener('click', function(ev){
-      takepicture();
-    ev.preventDefault();
-  }, false);
-
-})();
-</script>
-<?php
-}
-?>
-=======
 	function takepicture()
 	{
 		var data = new Image();
@@ -181,4 +137,3 @@ if ($_SESSION[LOGGED_ON])
 <?php
 }
 ?>
->>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3

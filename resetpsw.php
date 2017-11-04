@@ -1,62 +1,74 @@
 <?php
 session_start();
-$_SESSION["message"] = '';
+$_SESSION[message] = '';
+$_SESSION[login_err] = '';
+$_SESSION[login_success] = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
 	{
-        $username = $_POST["username"];
+        $email = $_POST["email"];
 		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-		$req = $con->prepare("SELECT username FROM users WHERE username = :username");
-		$req->execute(array(':username' => $username));
+		$req = $con->prepare("SELECT username FROM users WHERE email = :email");
+        $req->execute(array(':email' => $email));
 		if ($req->rowCount() > 0)
 		{
+            $datauser = $req->fetch();			
+            $username =	$datauser['username'];
             try
             {
-                $result = $con->prepare("SELECT email FROM users WHERE username = " . "'" . $username . "'");
-                $result->execute();
-                $donnees = $result->fetch();		
-                $email = $donnees[0];
-
+                $result = $con->query("SELECT activated FROM users WHERE email = " . "'" . $email . "'");
             }
             catch (PDOexception $e)
             {
                 echo "Error Database : " . $e->getMessage();
             }
-            try
+            
+            $dataresetstate = $result->fetch();
+            $activated = $dataresetstate[activated];
+            if ($activated == 1)
             {
-                $conflink = md5( rand(0,1000) );
-                $update = $con->prepare("UPDATE users SET resetpsw = '1' WHERE email = :email");
-                $update->execute(array(
-                    ':email' => $email
-                ));
-            }		
-            catch(PDOexception $e)
-            {
-                echo "Error Database : " . $e->getMessage();
+                try
+                {
+                    $conflink = md5( rand(0,1000) );
+                    $update = $con->prepare("UPDATE users SET resetpsw = '1', conflink = :conflink WHERE email = :email");
+                    $update->execute(array(
+                        ':email' => $email,
+                        ':conflink' => $conflink
+                    ));
+                }		
+                catch(PDOexception $e)
+                {
+                    echo "Error Database : " . $e->getMessage();
+                }
+                $to       =  $email;
+                $subject  = 'Camagru | Reset your password';
+                $message  = '
+    
+                This email has been sent automatically by Camagru to your request to recorver your password.
+    
+                ------------------------
+                Username: '.$username.'
+                ------------------------
+    
+                Please click this link to reset your account password:
+                http://localhost:8080/Camagru/verifypsw.php?email='.$email.'&conflink='.$conflink.'
+    
+                ';
+                $headers = 'From:noreply@camagru.com' . "\r\n";
+                mail($to, $subject, $message, $headers);
+                $_SESSION[login_success] = "Reset Email has been sent";
+                header( "refresh:3;url=index.php" );    
             }
-            $to       =  $email;
-            $subject  = 'Camagru | Reset your password';
-            $message  = '
-
-            This email has been sent automatically by Camagru to your request to recorver your password.
-
-            ------------------------
-            Username: '.$username.'
-            ------------------------
-
-            Please click this link to reset your account password:
-            http://localhost:8080/Camagru/verifypsw.php?email='.$email.'&conflink='.$conflink.'
-
-            ';
-            $headers = 'From:noreply@camagru.com' . "\r\n";
-            mail($to, $subject, $message, $headers);
-			$_SESSION[login_success] = "Reset Email has been sent";
-			header( "refresh:3;url=index.php" );
+            else
+            {
+                $_SESSION[login_err] = "Your account is not activated yet, please check your Inbox or Spam";    
+            }
+            
         }
 		else
 		{
-			$_SESSION[login_err] = "Username doesn't exist";
+			$_SESSION[login_err] = "Email doesn't exist";
 		}
 	}
 	catch (PDOexception $e)
@@ -94,8 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <div style = "padding:14%">
                 <div class="log_error"><?= $_SESSION[login_err] ?></div>
 				<div class="log_succes"><?= $_SESSION[login_success] ?></div>
-                <label><b>Username</b></label>
-                <input type="text" placeholder="Enter user name" name="username" required>
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter user name" name="email" required>
                 <div class="clearfix" style="text-align: center;">
                     <button type="submit" class="signup" name="clickme" style= "margin-left: 2%">Reset Password</button>
                 </div>
