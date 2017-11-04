@@ -97,7 +97,21 @@ body
 	border: none;
 }
 
-.button:hover
+.cambutton
+{
+	display: block;
+	position: relative;
+	float: right;
+	width: 15%;
+	height: 10%;
+	font-size: 2vw;
+	font-family: arial;
+	color: white;
+	background-color: #ffccdd;
+	border: none;
+}
+
+.cambutton:hover
 {
 	background-color: #ff4d88;
 }

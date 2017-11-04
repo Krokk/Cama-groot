@@ -4,7 +4,7 @@ session_start();
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-		
+
 		<meta charset="utf-8">
 		<title></title>
 	</head>
@@ -27,9 +27,113 @@ session_start();
 			</div>
 		</div>
 		<div class="main">
-		
+		<?php
+		if (isset($_SESSION[LOGGED_ON]))
+		{
+			echo '<center>
+			<video id="video"></video>
+			<button class="cambutton" id="startbutton">Prendre une photo</button>
+			<canvas id="canvas"></canvas></center>';
+		}
+		?>
 		</div>
 		<div class="footer">
-		</div>	
+		</div>
+		</div>
+		<div class="footer">
+		</div>
 	</body>
 </html>
+
+
+<?php
+if ($_SESSION[LOGGED_ON])
+{
+?>
+<script type="text/javascript">
+(function() {
+
+  var streaming = false,
+      video        = document.querySelector('#video'),
+      cover        = document.querySelector('#cover'),
+      canvas       = document.querySelector('#canvas'),
+	  context	   = canvas.getContext('2d'),
+      photo        = document.querySelector('#photo'),
+      startbutton  = document.querySelector('#startbutton'),
+      width = 320,
+      height = 0;
+
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
+
+  navigator.getMedia(
+    {
+      video: true,
+      audio: false
+    },
+    function(stream) {
+      if (navigator.mozGetUserMedia) {
+        video.mozSrcObject = stream;
+      } else {
+        var vendorURL = window.URL || window.webkitURL;
+        video.src = vendorURL.createObjectURL(stream);
+      }
+      video.play();
+    },
+    function(err) {
+      console.log("An error occured! " + err);
+    }
+  );
+
+  video.addEventListener('canplay', function(ev){
+    if (!streaming) {
+      height = video.videoHeight / (video.videoWidth/width);
+      video.setAttribute('width', width);
+      video.setAttribute('height', height);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
+      streaming = true;
+    }
+  }, false);
+
+	function takepicture()
+	{
+		var data = new Image();
+		var xml = new XMLHttpRequest();
+
+		canvas.width = width;
+		canvas.height = height;
+		context.drawImage(video, 0, 0, width, height);
+		data.src = canvas.toDataURL();
+
+		xml.onreadystatechange = function()
+		{
+			if (xml.readyState == 4 && (xml.status == 200 || xml.status == 0))
+			{
+				console.log(xml.response);
+				//if (xml.response)
+			}
+		}
+
+		console.log(data);
+		xml.open('POST', 'datastorage.php', true);
+		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xml.send("data=" + data);
+
+		//console.log(data);
+	    //photo.setAttribute('src', data);
+  }
+
+  startbutton.addEventListener('click', function(ev){
+	//ev.preventDefault();
+	takepicture();
+  }, false);
+
+})();
+
+</script>
+<?php
+}
+?>
