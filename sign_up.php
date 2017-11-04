@@ -55,22 +55,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         $to       =  $email;
                         $subject  = 'Signup | Verification';
                         $message  = '
-        
+
                         Thanks for signing up!
                         Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-        
+
                         ------------------------
                         Username: '.$username.'
                         ------------------------
-        
+
                         Please click this link to activate your account:
+<<<<<<< HEAD
                         http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
         
+=======
+                        http://localhost:8888/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
+
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
                         ';
-        
+
                         $headers = 'From:noreply@camagru.com' . "\r\n";
                         mail($to, $subject, $message, $headers);
-                        header( "refresh:0;url=account_created.php" );         
+                        header( "refresh:0;url=account_created.php" );
                     }
                     else
                     {
@@ -124,8 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 <label><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
                 <div class="clearfix" style="text-align: center;">
-                    <a href="index.php"><button class="signup" type="button" name="Cancel">Cancel</button></a>
-                    <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
+                    <button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top:2%;";>Sign Up</button>
                 </div>
             </div>
             </form>

@@ -16,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			));
 		if ($req->rowCount() > 0)
 		{
-			$donnees = $req->fetch();			
+			$donnees = $req->fetch();
 			$_SESSION[login_success] = "You are looged on " .$_POST['username'];
 			$_SESSION[LOGGED_ON] =	$_POST['username'];
-			header( "refresh:3;url=index.php" );
+			header( "refresh:1;url=index.php" );
 		}
 		else
 		{
@@ -64,13 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				<div class="log_succes"><?= $_SESSION[login_success] ?></div>
                 <label><b>Username</b></label>
                 <input type="text" placeholder="Enter user name" name="username" required>
-				
+
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <div class="clearfix" style="text-align: center;">
+<<<<<<< HEAD
                     <a href="resetpsw.php"><button class="signup" type="button" name="resetpsw">I forgot my password</button></a>
                     <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
+=======
+                    <button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Sign Up</button>
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
                 </div>
             </div>
             </form>

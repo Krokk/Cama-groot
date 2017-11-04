@@ -5,7 +5,7 @@ $_SESSION["message"] = '';
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-		
+
 		<meta charset="utf-8">
 		<title></title>
 	</head>
@@ -28,6 +28,7 @@ $_SESSION["message"] = '';
 			</div>
 		</div>
 		<div class="main">
+<<<<<<< HEAD
 			<?php
 			if (isset($_SESSION[LOGGED_ON]))
 			{
@@ -37,24 +38,49 @@ $_SESSION["message"] = '';
 			echo '<canvas id="canvas"></canvas>';
 			echo '</center>';
 			}
+=======
+		<?php
+		if (isset($_SESSION[LOGGED_ON]))
+		{
+			echo '<center>
+			<video id="video"></video>
+			<button class="cambutton" id="startbutton">Prendre une photo</button>
+			<canvas id="canvas"></canvas></center>';
+		}
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
 		?>
 		</div>
 		<div class="footer">
-		</div>	
+		</div>
+		</div>
+		<div class="footer">
+		</div>
 	</body>
 </html>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
 <?php
 if ($_SESSION[LOGGED_ON])
 {
 ?>
+<<<<<<< HEAD
 <script type="text/javascript">  
+=======
+<script type="text/javascript">
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
 (function() {
 
   var streaming = false,
       video        = document.querySelector('#video'),
       cover        = document.querySelector('#cover'),
       canvas       = document.querySelector('#canvas'),
+<<<<<<< HEAD
+=======
+	  context	   = canvas.getContext('2d'),
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
       width = 320,
@@ -95,6 +121,7 @@ if ($_SESSION[LOGGED_ON])
     }
   }, false);
 
+<<<<<<< HEAD
   function takepicture() {
     canvas.width = width;
     canvas.height = height;
@@ -114,3 +141,44 @@ if ($_SESSION[LOGGED_ON])
 <?php
 }
 ?>
+=======
+	function takepicture()
+	{
+		var data = new Image();
+		var xml = new XMLHttpRequest();
+
+		canvas.width = width;
+		canvas.height = height;
+		context.drawImage(video, 0, 0, width, height);
+		data.src = canvas.toDataURL();
+
+		xml.onreadystatechange = function()
+		{
+			if (xml.readyState == 4 && (xml.status == 200 || xml.status == 0))
+			{
+				console.log(xml.response);
+				//if (xml.response)
+			}
+		}
+
+		console.log(data);
+		xml.open('POST', 'datastorage.php', true);
+		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xml.send("data=" + data);
+
+		//console.log(data);
+	    //photo.setAttribute('src', data);
+  }
+
+  startbutton.addEventListener('click', function(ev){
+	//ev.preventDefault();
+	takepicture();
+  }, false);
+
+})();
+
+</script>
+<?php
+}
+?>
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
