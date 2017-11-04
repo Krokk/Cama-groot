@@ -7,33 +7,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
 	{
-		try
+		$password = hash("sha512", $_POST[password]);
+		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
+		$req->execute(array(
+			':username' => $_POST['username'],
+			':password' => $password
+			));
+		if ($req->rowCount() > 0)
 		{
-			$password = hash("sha512", $_POST[password]);
-			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-			$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
-			$req->execute(array(
-				':username' => $_POST['username'],
-				':password' => $password,
-				));
-			if ($req->rowCount() > 0)
-			{
-				$donnees = $req->fetch();
-				$_SESSION[login_success] = "You are looged on " .$_POST['username'];
-				$_SESSION[LOGGED_ON] =	$_POST['username'];
-				header( "refresh:1;url=index.php" );
-			}
-			else
-			{
-				$_SESSION[login_err] = "Username or password incorrect";
-			}
+			$donnees = $req->fetch();
+			$_SESSION[login_success] = "You are looged on " .$_POST['username'];
+			$_SESSION[LOGGED_ON] =	$_POST['username'];
+			header( "refresh:1;url=index.php" );
+		}
+		else
+		{
+			$_SESSION[login_err] = "Username or password incorrect";
+		}
 
-		}
-		catch (PDOexception $e)
-		{
-			echo "couldn't log you in : " . $e->getMessage();
-		}
 	}
+	catch (PDOexception $e)
+	{
+		echo "couldn't log you in : " . $e->getMessage();
+	}
+}
+
  ?>
 <html>
 	<head>
