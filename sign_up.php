@@ -64,8 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         ------------------------
 
                         Please click this link to activate your account:
+<<<<<<< HEAD
+                        http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
+        
+=======
                         http://localhost:8888/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
 
+>>>>>>> a3db44c827e31bf0374e5865e61a5dfdd1dba3e3
                         ';
 
                         $headers = 'From:noreply@camagru.com' . "\r\n";

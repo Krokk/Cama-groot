@@ -1,6 +1,16 @@
 <?php
+<<<<<<< HEAD
 	session_start();
 	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+=======
+session_start();
+$_SESSION["message"] = '';
+$_SESSION[login_success] = '';
+$_SESSION[login_err] = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	try
+>>>>>>> 165672e9b435b9e1bbb1985121d14725d8f5b84f
 	{
 		try
 		{
