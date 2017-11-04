@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 $result = $con->prepare("SELECT email FROM users WHERE username = " . "'" . $username . "'");
                 $result->execute();
-                $email = $result->fetch();			
+                $donnees = $result->fetch();		
+                $email = $donnees[0];
 
             }
             catch (PDOexception $e)
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 echo "Error Database : " . $e->getMessage();
             }
-            $to       =  $email[0];
+            $to       =  $email;
             $subject  = 'Camagru | Reset your password';
             $message  = '
 
