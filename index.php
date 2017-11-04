@@ -1,10 +1,5 @@
 <?php
-<<<<<<< HEAD
 	session_start();
-=======
-session_start();
-$_SESSION["message"] = '';
->>>>>>> 165672e9b435b9e1bbb1985121d14725d8f5b84f
 ?>
 <html>
 	<head>
