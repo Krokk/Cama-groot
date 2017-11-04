@@ -21,13 +21,13 @@
 		{
 			try
 			{
-				$update = $con->prepare("UPDATE users SET activated = '1' WHERE email = :email AND conflink = :conflink AND activated = '0'");
+				$update = $con->prepare("UPDATE users SET activated = '1', conflink = NULL WHERE email = :email AND conflink = :conflink AND activated = '0'");
 				$update->execute(array(
 					':email' => $email,
 					':conflink' => $conflink
 				));
 				$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-				$result = $con->query("SELECT username FROM users WHERE conflink = " . "'" . $conflink . "'");
+				$result = $con->query("SELECT username FROM users WHERE email = " . "'" . $email . "'");
 				$donnees = $result->fetch();			
 				$_SESSION[LOGGED_ON] =	$donnees['username'];
 			}

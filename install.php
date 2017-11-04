@@ -15,14 +15,15 @@
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$qry = "CREATE TABLE `db_camagru`.`users` (
+		$qry = "CREATE TABLE `users` (
 			`id` INT NOT NULL AUTO_INCREMENT,
 			`username` VARCHAR(255) NOT NULL,
 			`email` VARCHAR(255) NOT NULL,
-			`conflink` VARCHAR(255) NOT NULL,
+			`conflink` VARCHAR(255),
 			`activated` INT NOT NULL DEFAULT 0,
 			`password` VARCHAR(255) NOT NULL,
 			`avatar` VARCHAR(255),
+			`resetpsw` INT NOT NULL DEFAULT 0,
 			PRIMARY KEY (`id`));
 		  ";
 		$conn->exec($qry);

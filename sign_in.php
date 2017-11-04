@@ -1,5 +1,8 @@
 <?php
 session_start();
+$_SESSION["message"] = '';
+$_SESSION[login_success] = '';
+$_SESSION[login_err] = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
@@ -66,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <div class="clearfix" style="text-align: center;">
-                    <a href="index.php"><button class="signup" type="button" name="Cancel">Cancel</button></a>
+                    <a href="resetpsw.php"><button class="signup" type="button" name="resetpsw">I forgot my password</button></a>
                     <button type="submit" class="signup" name="clickme" style= "margin-left: 2%";>Sign Up</button>
                 </div>
             </div>
