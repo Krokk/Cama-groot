@@ -1,22 +1,14 @@
 <?php
+	session_start();
 
-//var_dump($_POST['data']);
-$img = $_POST['data'];
-// $img = str_replace('data:image/png;base64,', '', $img);
-$img = explode(',', $img);
-// $img = str_replace(' ', '+', $img);
-$filedata = base64_decode($img);
-$filename = 'test.png';
-var_dump($img);
-file_put_contents($filename, $filedata);
-
-// list(, $img) = explode(';', $img);
-// list(, $img) = explode(',', $img);
-// $img = base64_decode($img);
-// $img = str_replace('data:image/png;base64,', '', $img);
-// $img = str_replace(' ', '+', $img);
-
-// print_r($img);
-//file_put_contents('test.png', $img);*/
+	if (!file_exists("./pics"))
+		mkdir("./pics");
+	$img = $_POST['data'];
+	$img = str_replace('data:image/png;base64,', '', $img);
+	$img = str_replace(' ', '+', $img);
+	$filedata = base64_decode($img);
+	$filepath = "./pics/";
+	$filename = $filepath . $_SESSION[LOGGED_ON] . ' ' . time() . '.png';
+	file_put_contents($filename, $filedata);
 
 ?>
