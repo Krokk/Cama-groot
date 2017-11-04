@@ -96,12 +96,16 @@ body
 	background-color: #ffccdd;
 	border: none;
 }
+.button:hover
+{
+	background-color: #ff4d88;
+}
 
 .cambutton
 {
 	display: block;
 	position: relative;
-	float: right;
+	/*float: right;*/
 	width: 15%;
 	height: 10%;
 	font-size: 2vw;
@@ -154,7 +158,8 @@ input[type=text], input[type=password], input[type=email] {
     box-sizing: border-box;
 }
 
-button.signup {
+.signup
+{
     background-color: #ffccdd;
     color: LavenderBlush;
     padding: 14px 20px;
@@ -162,7 +167,13 @@ button.signup {
     cursor: pointer;
     width: 36%;
 }
-button.signed
+
+.signup:hover
+{
+	background-color: #ff4d88;
+}
+
+.signed
 {
 	position: relative;
 	float: right;
