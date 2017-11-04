@@ -1,6 +1,10 @@
 <?php
+<<<<<<< HEAD
+	session_start();
+=======
 session_start();
 $_SESSION["message"] = '';
+>>>>>>> 165672e9b435b9e1bbb1985121d14725d8f5b84f
 ?>
 <html>
 	<head>
@@ -61,7 +65,7 @@ if ($_SESSION[LOGGED_ON])
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
       width = 320,
-      height = 0;
+      height = 320;
 
   navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -100,20 +104,27 @@ if ($_SESSION[LOGGED_ON])
 
 	function takepicture()
 	{
-		var data = new Image();
+		context.drawImage(video, 0, 0, width, height);
+		var data = canvas.toDataURL("image/png");
 		var xml = new XMLHttpRequest();
+		var tmp = new Image();
+		tmp.onload = function(){
+			context.drawImage(tmp, width, height);
+		}
+		tmp.src = data;
 
 		canvas.width = width;
 		canvas.height = height;
-		context.drawImage(video, 0, 0, width, height);
-		data.src = canvas.toDataURL();
 
 		xml.onreadystatechange = function()
 		{
 			if (xml.readyState == 4 && (xml.status == 200 || xml.status == 0))
 			{
 				console.log(xml.response);
-				//if (xml.response)
+				// if (xml.response)
+				// {
+				// 	context.drawImage("", width, height);
+				// }
 			}
 		}
 
