@@ -101,39 +101,22 @@ if ($_SESSION[LOGGED_ON])
 	{
 		context.drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL("image/png");
-		var xml = new XMLHttpRequest();
 		var tmp = new Image();
-		tmp.onload = function(){
+		tmp.onload = function()
+		{
 			context.drawImage(tmp, width, height);
 		}
 		tmp.src = data;
-
-		canvas.width = width;
-		canvas.height = height;
-
-		xml.onreadystatechange = function()
-		{
-			if (xml.readyState == 4 && (xml.status == 200 || xml.status == 0))
-			{
-				console.log(xml.response);
-				// if (xml.response)
-				// {
-				// 	context.drawImage("", width, height);
-				// }
-			}
-		}
-
-		console.log(data);
+		// Debut Ajax
+		var xml = new XMLHttpRequest()
 		xml.open('POST', 'datastorage.php', true);
 		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xml.send("data=" + data);
-
-		//console.log(data);
-	    //photo.setAttribute('src', data);
+		// Fin Ajax
   }
 
-  startbutton.addEventListener('click', function(ev){
-	//ev.preventDefault();
+  startbutton.addEventListener('click', function(ev)
+  {
 	takepicture();
   }, false);
 

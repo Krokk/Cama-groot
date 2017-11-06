@@ -8,7 +8,7 @@
 	$img = str_replace(' ', '+', $img);
 	$filedata = base64_decode($img);
 	$filepath = "./pics/";
-	$filename = $filepath . $_SESSION[LOGGED_ON] . ' ' . time() . '.png';
+	$filename = $filepath . $_SESSION[LOGGED_ON] . time() . '.png';
 	file_put_contents($filename, $filedata);
-
+	echo $filename;
 ?>

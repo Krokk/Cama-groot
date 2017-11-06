@@ -51,7 +51,7 @@
             {
                 echo "Couldn't write in database: " . $e->getMessage();
             }
-
+            
         }
         else
         {
