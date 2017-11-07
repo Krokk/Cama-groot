@@ -1,6 +1,7 @@
 body
 {
-	background-color: LavenderBlush;
+	background-color: rgb(245, 247, 248);
+	
 	margin: 0 0 0 0;
 }
 .header
@@ -8,8 +9,8 @@ body
 	/* position: relative; */
 	/* text-align: center; */
 	float: inherit;
-	background-color: #ffccdd;
-	height: 12vw;
+	background-color: rgb(78, 99, 110);
+	height: 6vw;
 	max-height: 3.5cm;
 	width: 100%;
 }
@@ -29,6 +30,16 @@ body
 	width: 80%;
 	height: 80%;
 }
+
+#Global #gauche {
+	text-align:center;
+    float:left;
+    width:70%;
+}
+#Global #droite {
+    margin-left:70%   
+}
+
 .mainreg
 {
 	margin: auto;
@@ -41,8 +52,8 @@ body
 {
 	position: absolute;
 	bottom: 0;
-	background-color: #ffccdd;
-	height: 12vw;
+	background-color: rgb(78, 99, 110);
+	height: 5vw;
 	max-height: 3.5cm;
 	width: 100%;
 
@@ -52,21 +63,22 @@ body
 {
 	position: relative;
 	font-family: arial;
-	background-color: #ffccdd;
+	background-color: rgb(78, 99, 110);
 	border: none;
 	margin: auto;
 	margin-left: 25vw;
 	float: left;
 	height: 100%;
 	width: 50%;
-	font-size: 5vw;
+	font-size: 4vw;
 	color: black;
 }
 .title:focus {outline:0;}
 
 .title:hover
 {
-	background-color: #ffccdd;
+	background-color: rgb(255, 255, 255);
+	
 }
 .login
 {
@@ -87,37 +99,46 @@ body
 .button
 {
 	position: relative;
+	
 	float: right;
 	width: 100%;
 	height: 50%;
 	font-size: 2vw;
 	font-family: arial;
 	color: white;
-	background-color: #ffccdd;
+	background-color: rgb(78, 99, 110);
 	border: none;
 }
 .button:hover
 {
-	background-color: #ff4d88;
+	background-color: rgb(204, 204, 204);
 }
 
+
+.video
+{
+	max-width: 100%;
+	height: auto;
+}
 .cambutton
 {
+	border-radius: 7px;
+	margin:10 auto;
 	display: block;
 	position: relative;
-	/*float: right;*/
-	width: 15%;
+	width: automax-width: 100%;
+	height: auto;
 	height: 10%;
 	font-size: 2vw;
 	font-family: arial;
 	color: white;
-	background-color: #ffccdd;
+	background-color: rgb(78, 99, 110);
 	border: none;
 }
 
 .cambutton:hover
 {
-	background-color: #ff4d88;
+	background-color: rgb(204, 204, 204);
 }
 
 .button:active
@@ -135,20 +156,11 @@ body
 	width: 14.1vw;
 	height: 2vw;
 	margin-left: 0.6vw;
-	background-color: LavenderBlush;
+	background-color: rgb(78, 99, 110);
 	border: none;
 	font-size: 1vw;
 }
 
-.registerbutton {outline:0;}
-
-input:focus {outline:0;}
-
-@media screen and (max-width: 300px) {
-    .cancelbtn, .signupbtn {
-       width: 100%;
-    }
-}
 
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
@@ -160,7 +172,8 @@ input[type=text], input[type=password], input[type=email] {
 
 .signup
 {
-    background-color: #ffccdd;
+	border-radius: 7px;
+    background-color: rgb(78, 99, 110);
     color: LavenderBlush;
     padding: 14px 20px;
     border: none;
@@ -170,7 +183,7 @@ input[type=text], input[type=password], input[type=email] {
 
 .signup:hover
 {
-	background-color: #ff4d88;
+	background-color: rgb(204, 204, 204);
 }
 
 .signed
@@ -182,7 +195,7 @@ input[type=text], input[type=password], input[type=email] {
 	font-size: 2vw;
 	font-family: arial;
 	color: white;
-	background-color: #ffccdd;
+	background-color: rgb(78, 99, 110);
 	border: none;
 }
 

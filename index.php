@@ -26,17 +26,27 @@
 			?>
 			</div>
 		</div>
-		<div class="main">
+		
 		<?php
 		if (isset($_SESSION[LOGGED_ON]))
 		{
-			echo '<center>
-			<video id="video"></video>
-			<button class="cambutton" id="startbutton">Prendre une photo</button>
-			<canvas id="canvas"></canvas></center>';
+			echo '
+			
+			<div id="global">
+				<div id="gauche">
+					<video id="video"></video>
+					<button class="cambutton" id="startbutton">Prendre une photo</button>
+					<canvas id="canvas"></canvas>
+				</div>
+				<div id="droite">
+					SIDE BITCH
+				</div>
+			</div>
+				';
+			
 		}
 		?>
-		</div>
+		
 		<div class="footer">
 		</div>
 		</div>
@@ -49,6 +59,7 @@
 if ($_SESSION[LOGGED_ON])
 {
 ?>
+
 <script type="text/javascript">
 (function() {
 
@@ -59,8 +70,11 @@ if ($_SESSION[LOGGED_ON])
 	  context	   = canvas.getContext('2d'),
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
-      width = 320,
-      height = 320;
+		 
+			width = (window.innerWidth / 4 ) ;
+			height = window.innerHeight;
+			// width = 320,
+			// height = 320;
 
   navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -121,7 +135,6 @@ if ($_SESSION[LOGGED_ON])
   }, false);
 
 })();
-
 </script>
 <?php
 }
