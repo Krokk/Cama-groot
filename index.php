@@ -26,27 +26,28 @@
 			?>
 			</div>
 		</div>
-		
+
 		<?php
 		if (isset($_SESSION[LOGGED_ON]))
 		{
 			echo '
-			
+
 			<div id="global">
 				<div id="gauche">
 					<video id="video"></video>
 					<button class="cambutton" id="startbutton">Prendre une photo</button>
-					<canvas id="canvas"></canvas>
+					<img id="photo" />
+					<canvas id="canvas" style="display:none;"></canvas>
 				</div>
 				<div id="droite">
 					SIDE BITCH
 				</div>
 			</div>
 				';
-			
+
 		}
 		?>
-		
+
 		<div class="footer">
 		</div>
 		</div>
@@ -70,7 +71,7 @@ if ($_SESSION[LOGGED_ON])
 	  context	   = canvas.getContext('2d'),
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
-		 
+
 			width = (window.innerWidth / 4 ) ;
 			height = window.innerHeight;
 			// width = 320,
@@ -116,10 +117,7 @@ if ($_SESSION[LOGGED_ON])
 		context.drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL("image/png");
 		var tmp = new Image();
-		tmp.onload = function()
-		{
-			context.drawImage(tmp, width, height);
-		}
+
 		tmp.src = data;
 		// Debut Ajax
 		var xml = new XMLHttpRequest()
@@ -127,7 +125,15 @@ if ($_SESSION[LOGGED_ON])
 		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xml.send("data=" + data);
 		// Fin Ajax
-  }
+
+		xml.onload = function()
+		{
+			var response = xml.responseText;
+			photo.src = response;
+			console.log(response);
+		}
+
+   }
 
   startbutton.addEventListener('click', function(ev)
   {
