@@ -34,6 +34,12 @@
 
 			<div id="global">
 				<div id="gauche">
+				<div class="filters">
+					<img src="./filters/blankaface.png" alt="missing" class="filtersize">
+					<img src="./filters/goukiface.png" alt="missing" class="filtersize">
+					<img src="./filters/phoenix.png" alt="missing" class="filtersize">
+					<img src="./filters/marinestimpak.png" alt="missing" class="filtersize">
+				</div>
 					<video id="video"></video>
 					<button class="cambutton" id="startbutton">Prendre une photo</button>
 					<img id="photo" />
@@ -48,9 +54,6 @@
 		}
 		?>
 
-		<div class="footer">
-		</div>
-		</div>
 		<div class="footer">
 		</div>
 	</body>
