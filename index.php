@@ -34,14 +34,19 @@
 
 			<div id="global">
 				<div id="gauche">
-				<div class="filters">
-					<img src="./filters/blankaface.png" alt="missing" class="filtersize">
-					<img src="./filters/goukiface.png" alt="missing" class="filtersize">
-					<img src="./filters/phoenix.png" alt="missing" class="filtersize">
-					<img src="./filters/marinestimpak.png" alt="missing" class="filtersize">
-				</div>
+					<div class="filters">
+						<input type="radio" name="filter" value="blanka" id="blanka" checked/>
+						<label><img src="./filters/blanka.png" alt="missing" class="filtersize" /></label>
+						<input type="radio" name="filter" value="gouki"/>
+						<label><img src="./filters/gouki.png" alt="missing" class="filtersize" /></label>
+						<br>
+						<input type="radio" name="filter" value="phoenix"/>
+						<label><img src="./filters/phoenix.png" alt="missing" class="filtersize" /></label>
+						<input type="radio" name="filter" value="marine"/>
+						<label><img src="./filters/marine.png" alt="missing" class="filtersize" /></label>
+					</div>
 					<video id="video"></video>
-					<button class="cambutton" id="startbutton">Prendre une photo</button>
+					<button type="submit" class="cambutton" id="startbutton">Prendre une photo</button>
 					<img id="photo" />
 					<canvas id="canvas" style="display:none;"></canvas>
 				</div>
@@ -64,7 +69,7 @@ if ($_SESSION[LOGGED_ON])
 {
 ?>
 
-<script type="text/javascript">
+<script>
 (function() {
 
   var streaming = false,
@@ -74,6 +79,7 @@ if ($_SESSION[LOGGED_ON])
 	  context	   = canvas.getContext('2d'),
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
+	  filter	= document.querySelector('#blanka'),
 
 			width = (window.innerWidth / 4 ) ;
 			height = window.innerHeight;
@@ -122,11 +128,12 @@ if ($_SESSION[LOGGED_ON])
 		var tmp = new Image();
 
 		tmp.src = data;
+
 		// Debut Ajax
 		var xml = new XMLHttpRequest()
 		xml.open('POST', 'datastorage.php', true);
 		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xml.send("data=" + data);
+		xml.send("data=" + data + "&filter=" + document.querySelector('input[name="filter"]:checked').value);
 		// Fin Ajax
 
 		xml.onload = function()

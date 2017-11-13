@@ -3,6 +3,7 @@
 
 	if (!file_exists("./pics"))
 		mkdir("./pics");
+	$filter = $_POST['filter'];
 	$img = $_POST['data'];
 	$img = str_replace('data:image/png;base64,', '', $img);
 	$img = str_replace(' ', '+', $img);

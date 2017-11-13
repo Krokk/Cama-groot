@@ -230,12 +230,11 @@ input[type=text], input[type=password], input[type=email] {
 {
        float: right;
        margin-top: 1vw;
-       /*padding: 21vw;*/
-       border: 1px solid black;
+       /*border: 1px solid black;*/
 }
 
 .filtersize
 {
-       width: 10vw;
-       height: 10vw;
+       width: 9vw;
+       height: 9vw;
 }
