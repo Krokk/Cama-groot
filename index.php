@@ -37,12 +37,12 @@
 					<div class="filters">
 						<input type="radio" name="filter" value="blanka" id="blanka" checked/>
 						<label><img src="./filters/blanka.png" alt="missing" class="filtersize" /></label>
-						<input type="radio" name="filter" value="gouki"/>
+						<input type="radio" name="filter" value="gouki" id="gouki"/>
 						<label><img src="./filters/gouki.png" alt="missing" class="filtersize" /></label>
 						<br>
-						<input type="radio" name="filter" value="phoenix"/>
+						<input type="radio" name="filter" value="phoenix" id="phoenix"/>
 						<label><img src="./filters/phoenix.png" alt="missing" class="filtersize" /></label>
-						<input type="radio" name="filter" value="marine"/>
+						<input type="radio" name="filter" value="marine" id="phoenix"/>
 						<label><img src="./filters/marine.png" alt="missing" class="filtersize" /></label>
 					</div>
 					<video id="video"></video>
@@ -133,7 +133,7 @@ if ($_SESSION[LOGGED_ON])
 		var xml = new XMLHttpRequest()
 		xml.open('POST', 'datastorage.php', true);
 		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xml.send("data=" + data + "&filter=" + document.querySelector('input[name="filter"]:checked').value);
+		xml.send("filter=" + document.querySelector('input[name="filter"]:checked').value + "&data=" + data);
 		// Fin Ajax
 
 		xml.onload = function()
