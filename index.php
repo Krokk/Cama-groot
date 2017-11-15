@@ -30,6 +30,8 @@
 		<?php
 		if (isset($_SESSION[LOGGED_ON]))
 		{
+			$pics = scandir("./pics/");
+			$pics = array_slice($pics, 2);
 			echo '
 
 			<div id="global">
@@ -50,9 +52,12 @@
 					<img id="photo" />
 					<canvas id="canvas" style="display:none;"></canvas>
 				</div>
-				<div id="droite">
-					SIDE BITCH
-				</div>
+				<div id="droite">';
+					foreach ($pics as $value)
+					{
+						echo "<img class='gallery' src='./pics/" . $value . "'/>";
+					}
+				 echo '</div>
 			</div>
 				';
 
@@ -81,7 +86,7 @@ if ($_SESSION[LOGGED_ON])
       startbutton  = document.querySelector('#startbutton'),
 	  filter	= document.querySelector('#blanka'),
 
-			width = (window.innerWidth / 4 ) ;
+			width = (window.innerWidth / 5 ) ;
 			height = window.innerHeight;
 			// width = 320,
 			// height = 320;

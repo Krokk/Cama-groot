@@ -36,8 +36,11 @@ body
     width:70%;
 }
 #Global #droite {
-	overflow: auto;
-    margin-left:70%
+	display: inline-block;
+	overflow: scroll;
+	border: 1px solid black;
+	display: block;
+	height: 90%;
 }
 
 .mainreg
@@ -238,4 +241,10 @@ input[type=text], input[type=password], input[type=email] {
 {
        width: 9vw;
        height: 9vw;
+}
+
+.gallery
+{
+	width: 14vw;
+	height: 14vw;
 }
