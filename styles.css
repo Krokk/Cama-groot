@@ -33,14 +33,14 @@ body
 
 #Global #gauche {
     float:left;
-    width:70%;
+	margin-left: 5%;
+    width:50%;
 }
 #Global #droite {
 	display: inline-block;
 	overflow: scroll;
-	border: 1px solid black;
 	display: block;
-	height: 90%;
+	height: 85%;
 }
 
 .mainreg
@@ -128,7 +128,7 @@ body
 	border-radius: 7px;
 	display: block;
 	margin-left: 3.5vw;
-	margin-right: 0;
+	margin-right: none;
 	width: automax-width: 100%;
 	height: auto;
 	height: 10%;
@@ -233,7 +233,9 @@ input[type=text], input[type=password], input[type=email] {
 .filters
 {
        float: right;
-       margin-top: 1vw;
+	   margin: auto;
+	   /*margin-right: 1px;
+       margin-top: 1vw;*/
        /*border: 1px solid black;*/
 }
 

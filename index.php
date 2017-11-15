@@ -32,6 +32,7 @@
 		{
 			$pics = scandir("./pics/");
 			$pics = array_slice($pics, 2);
+			$pics = array_reverse($pics);
 			echo '
 
 			<div id="global">
