@@ -247,6 +247,8 @@ input[type=text], input[type=password], input[type=email] {
 
 .gallery
 {
+	border-radius: 1vw;
+	padding: 0.2vw;
 	width: 14vw;
 	height: 14vw;
 }
