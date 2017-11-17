@@ -56,10 +56,16 @@
 				<div id="droite">';
 					foreach ($pics as $value)
 					{
-						echo "<img class='gallery' src='./pics/" . $value . "'/>";
+						$value = explode(' ', $value);
+						if ($_SESSION[LOGGED_ON] == $value[0])
+						{
+							$value = implode(' ', $value);
+							echo "<img class='gallery' src='./pics/" . $value . "'/>";
+						}
 					}
 				 echo '</div>
 			</div>
+
 				';
 
 		}
