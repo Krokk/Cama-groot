@@ -10,6 +10,7 @@
 	$img = str_replace(' ', '+', $img);
 	$filedata = base64_decode($img);
 	$filepath = "./pics/";
+	$filesql = $_SESSION[LOGGED_ON] . time() . '.png';
 	$filename = $filepath . $_SESSION[LOGGED_ON] . " " . time() . '.png';
 
 	if (file_exists($filter))
@@ -20,6 +21,20 @@
 		imagecopy($dest, $src, 0, 0, 0, 0, imagesx($src) - 1, imagesy($src) - 1);
 		imagepng($dest, $filename);
 	}
-
+	try
+	{
+		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$req = $conn->prepare('INSERT INTO Photos (username, timet, url) VALUES (:username, NOW() , :url)');
+		$req->execute(array(
+			':username' => $_SESSION['LOGGED_ON'],
+			':url' => $filesql
+		));
+		$conn->exec($req);
+	}
+	catch(PDOException $e)
+	{
+		echo "Couldn't write in Database: " . $e->getMessage();
+	}
 	echo $filename;
 ?>
