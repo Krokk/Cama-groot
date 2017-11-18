@@ -267,7 +267,7 @@ input[type=text], input[type=password], input[type=email] {
 	opacity: 0;
 	/*padding : 15px;*/
 	width: 5%;
-	margin-left: 5.5vw;
+	margin-left: 5.2vw;
 	transition: .3s ease;
 	z-index: 2;
 }
