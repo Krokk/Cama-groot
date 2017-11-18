@@ -45,7 +45,7 @@
 						<br>
 						<input type="radio" name="filter" value="phoenix" id="phoenix"/>
 						<label><img src="./filters/phoenix.png" alt="missing" class="filtersize" /></label>
-						<input type="radio" name="filter" value="marine" id="phoenix"/>
+						<input type="radio" name="filter" value="marine" id="marine"/>
 						<label><img src="./filters/marine.png" alt="missing" class="filtersize" /></label>
 					</div>
 					<video id="video"></video>
@@ -62,7 +62,7 @@
 							$value = implode(' ', $value);
 							echo "<div class='del'>
 									<img class='gallery' src='./pics/" . $value . "'/>
-									<div class='delbutton'><img src='./ressources/delicon.png' style='width:4vw;height=4vw;'/>
+									<div class='delbutton'><a href='index.php'><img src='./ressources/delicon.png' style='width:4vw;height=4vw;'/></a>
 									</div>
 								</div>";
 						}
