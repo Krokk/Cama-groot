@@ -251,4 +251,37 @@ input[type=text], input[type=password], input[type=email] {
 	padding: 0.2vw;
 	width: 14vw;
 	height: 14vw;
+	transition: .3s ease;
+	z-index: 1;
+}
+
+.del
+{
+	display: inline-block;
+}
+
+.delbutton
+{
+	position: relative;
+	top : -9vw;
+	opacity: 0;
+	padding : 15px;
+	color: black;
+	background-color: black;
+	z-index: 2;
+}
+
+.gallery:hover
+{
+	filter: blur(4px);
+}
+
+.delbutton:hover + .gallery
+{
+	filter: blur(4px);
+}
+
+.gallery:hover + .delbutton
+{
+	opacity: 1;
 }

@@ -60,7 +60,11 @@
 						if ($_SESSION[LOGGED_ON] == $value[0])
 						{
 							$value = implode(' ', $value);
-							echo "<img class='gallery' src='./pics/" . $value . "'/>";
+							echo "<div class='del'>
+									<img class='gallery' src='./pics/" . $value . "'/>
+									<div class='delbutton'>
+									</div>
+								</div>";
 						}
 					}
 				 echo '</div>
