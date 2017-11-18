@@ -30,7 +30,6 @@
 			':username' => $_SESSION['LOGGED_ON'],
 			':url' => $filesql
 		));
-		$conn->exec($req);
 	}
 	catch(PDOException $e)
 	{
