@@ -265,15 +265,21 @@ input[type=text], input[type=password], input[type=email] {
 	position: relative;
 	top : -9vw;
 	opacity: 0;
-	padding : 15px;
-	color: black;
-	background-color: black;
+	/*padding : 15px;*/
+	width: 5%;
+	margin-left: 5.5vw;
+	transition: .3s ease;
 	z-index: 2;
 }
 
 .gallery:hover
 {
 	filter: blur(4px);
+}
+
+.delbutton:hover
+{
+	opacity: 1;
 }
 
 .delbutton:hover + .gallery
