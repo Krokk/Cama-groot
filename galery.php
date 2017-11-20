@@ -44,8 +44,13 @@ $_SESSION[message] = '';
             {
                 echo "Couldn't read in Database: " . $e->getMessage();
             }
+			foreach ($result as $value)
+			{
+				echo "<div class='del'>
+						<img class='gallery' src='./pics/" . $value . "'/>
+					</div>";
 
-
+			}
         }
         ?>
 
