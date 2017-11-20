@@ -52,9 +52,9 @@
 		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$qry = "CREATE TABLE `db_camagru`.`Photos` (
-		`PhotoID` INT NOT NULL,
-		`username` CHAR NOT NULL,
-		`time` DATETIME NOT NULL,
+		`PhotoID` INT NOT NULL AUTO_INCREMENT,
+		`username` VARCHAR(255) NOT NULL,
+		`timet` DATETIME NOT NULL,
 		`url` VARCHAR(255) NOT NULL,
 		PRIMARY KEY (`PhotoID`));
 			";
