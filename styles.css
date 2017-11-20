@@ -272,19 +272,9 @@ input[type=text], input[type=password], input[type=email] {
 	z-index: 2;
 }
 
-.gallery:hover
-{
-	filter: blur(4px);
-}
-
 .delbutton:hover
 {
 	opacity: 1;
-}
-
-.delbutton:hover + .gallery
-{
-	filter: blur(4px);
 }
 
 .gallery:hover + .delbutton

@@ -62,7 +62,7 @@
 							$value = implode(' ', $value);
 							echo "<div class='del'>
 									<img class='gallery' src='./pics/" . $value . "'/>
-									<div class='delbutton'><a href='index.php'><img src='./ressources/delicon.png' style='width:4vw;height=4vw;'/></a>
+									<div class='delbutton'><a href='delpicture.php?pic=" . $value . "'><img src='./ressources/icons/delicon.png' style='width:4vw;height=4vw;'/></a>
 									</div>
 								</div>";
 						}
