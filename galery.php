@@ -28,12 +28,10 @@ $_SESSION[message] = '';
 		</div>
 		<div class="main">
         <?php
-
         if ($_SESSION[LOGGED_ON])
         {
             try
             {
-
             // requete pour recupere les photos par utilisateur
             // $req = $conn->prepare('SELECT url FROM Photos WHERE username = :username ORDER BY timet');
             $conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
@@ -43,7 +41,6 @@ $_SESSION[message] = '';
             $result = $req->fetchAll(PDO::FETCH_COLUMN, 0);
             print_r($result);
             }
-
             catch (Exception $e)
             {
                 echo "Couldn't read in Database: " . $e->getMessage();
