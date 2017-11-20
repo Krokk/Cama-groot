@@ -38,7 +38,6 @@ $_SESSION[message] = '';
             $req = $conn->prepare('SELECT url FROM Photos ORDER BY timet');
     		$req->execute();
             $result = $req->fetchAll(PDO::FETCH_COLUMN, 0);
-            print_r($result);
             }
             catch (Exception $e)
             {
