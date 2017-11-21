@@ -123,22 +123,20 @@ body
 	max-width: 100%;
 	height: auto;
 }
+
 .cambutton
 {
+	margin-top: 0.3vw;
 	border-radius: 7px;
 	display: block;
-	margin-left: 3.5vw;
-	margin-right: none;
-	width: automax-width: 100%;
+	margin-left: 7vw;
 	height: auto;
-	height: 10%;
 	font-size: 2vw;
 	font-family: arial;
 	color: white;
-	background-color: rgb(78, 99, 110);
 	border: none;
+	position: relative;
 }
-
 .cambutton:hover
 {
 	background-color: rgb(204, 204, 204);
@@ -287,4 +285,16 @@ input[type=text], input[type=password], input[type=email] {
 	display: inline-block;
 	overflow: scroll;
 	height: 85%;
+}
+
+.cambutton {
+	border-radius: 7px;
+	display: block;
+	margin-left: 7vw;
+	height: auto;
+	font-size: 2vw;
+	font-family: arial;
+	color: white;
+	border: none;
+	position: relative;
 }
