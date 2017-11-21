@@ -281,3 +281,10 @@ input[type=text], input[type=password], input[type=email] {
 {
 	opacity: 1;
 }
+
+.galleryview
+{
+	display: inline-block;
+	overflow: scroll;
+	height: 85%;
+}
