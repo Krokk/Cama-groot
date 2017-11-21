@@ -49,7 +49,7 @@
 						<label><img src="./filters/marine.png" alt="missing" class="filtersize" /></label>
 					</div>
 					<video id="video"></video>
-					<button type="submit" class="cambutton" id="startbutton">Prendre une photo</button>
+					<button type="submit" class="cambutton" id="startbutton"><img src="./ressources/icons/photo-camera.png" style="width:4vw;height=4vw;"/></button>
 					<img id="photo" />
 					<canvas id="canvas" style="display:none;"></canvas>
 				</div>
@@ -62,7 +62,7 @@
 							$value = implode(' ', $value);
 							echo "<div class='del'>
 									<img class='gallery' src='./pics/" . $value . "'/>
-									<div class='delbutton'><a href='delpicture.php?pic=" . $value . "'><img src='./ressources/icons/delicon.png' style='width:4vw;height=4vw;'/></a>
+									<div class='delbutton'><a href='delpicture.php?pic=" . $value . "'><img src='./ressources/icons/delwhite.png' style='width:4vw;height=4vw;'/></a>
 									</div>
 								</div>";
 						}

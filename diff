@@ -1,0 +1,112 @@
+diff --git a/galery.php b/galery.php
+deleted file mode 100644
+index c1d8b70..0000000
+--- a/galery.php
++++ /dev/null
+@@ -1,62 +0,0 @@
+-<?php
+-session_start();
+-$_SESSION[message] = '';
+-?>
+-<html>
+-	<head>
+-		<link rel="stylesheet" href="styles.css">
+-		<meta charset="utf-8">
+-		<title></title>
+-	</head>
+-	<body>
+-		<div class="header">
+-			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
+-			<div class="box1">
+- 			<?php
+- 			if (isset($_SESSION[LOGGED_ON]))
+- 			{
+- 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
+- 				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
+- 			}
+- 			else
+- 			{
+- 				echo '<a href="sign_in.php"><button class="button" type="button" name="Login">Sign in</button></a>';
+- 				echo '<a href="sign_up.php"><button class="button" type="button" name="Sign up">Sign up</button></a>';
+- 			}
+- 			?>
+- 			</div>
+-		</div>
+-		<div class="main">
+-        <?php
+-        if ($_SESSION[LOGGED_ON])
+-        {
+-            try
+-            {
+-            // requete pour recupere les photos par utilisateur
+-            // $req = $conn->prepare('SELECT url FROM Photos WHERE username = :username ORDER BY timet');
+-            $conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+-            $req = $conn->prepare('SELECT url FROM Photos ORDER BY timet');
+-    		$req->execute();
+-            $result = $req->fetchAll(PDO::FETCH_COLUMN, 0);
+-            }
+-            catch (Exception $e)
+-            {
+-                echo "Couldn't read in Database: " . $e->getMessage();
+-            }
+-			foreach ($result as $value)
+-			{
+-				echo "<div class='del'>
+-						<img class='gallery' src='./pics/" . $value . "'/>
+-					</div>";
+-
+-			}
+-        }
+-        ?>
+-
+-		</div>
+-		<div class="footer">
+-
+-		</div>
+-
+-	</body>
+-</html>
+diff --git a/icons/correct-symbol.png b/icons/correct-symbol.png
+deleted file mode 100644
+index aed7c22..0000000
+Binary files a/icons/correct-symbol.png and /dev/null differ
+diff --git a/icons/download.png b/icons/download.png
+deleted file mode 100644
+index fdd191a..0000000
+Binary files a/icons/download.png and /dev/null differ
+diff --git a/icons/home.png b/icons/home.png
+deleted file mode 100644
+index 7883c2c..0000000
+Binary files a/icons/home.png and /dev/null differ
+diff --git a/icons/instagram-symbol.png b/icons/instagram-symbol.png
+deleted file mode 100644
+index d36cd1f..0000000
+Binary files a/icons/instagram-symbol.png and /dev/null differ
+diff --git a/icons/logo.png b/icons/logo.png
+deleted file mode 100644
+index db6578a..0000000
+Binary files a/icons/logo.png and /dev/null differ
+diff --git a/icons/man-human-person-login-512.png b/icons/man-human-person-login-512.png
+deleted file mode 100644
+index 8cc38a1..0000000
+Binary files a/icons/man-human-person-login-512.png and /dev/null differ
+diff --git a/icons/padlock.png b/icons/padlock.png
+deleted file mode 100644
+index 5135453..0000000
+Binary files a/icons/padlock.png and /dev/null differ
+diff --git a/icons/photo-camera.png b/icons/photo-camera.png
+deleted file mode 100644
+index 1c3abcf..0000000
+Binary files a/icons/photo-camera.png and /dev/null differ
+diff --git a/icons/sign-out-option.png b/icons/sign-out-option.png
+deleted file mode 100644
+index e4f6a2e..0000000
+Binary files a/icons/sign-out-option.png and /dev/null differ
+diff --git a/icons/thumbs-up-hand-symbol.png b/icons/thumbs-up-hand-symbol.png
+deleted file mode 100644
+index 163818b..0000000
+Binary files a/icons/thumbs-up-hand-symbol.png and /dev/null differ
+diff --git a/icons/user-shape.png b/icons/user-shape.png
+deleted file mode 100644
+index 9d73bbe..0000000
+Binary files a/icons/user-shape.png and /dev/null differ
