@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
                         Please click this link to activate your account:
                         http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
-        
+
                         ';
 
                         $headers = 'From:noreply@camagru.com' . "\r\n";
@@ -107,6 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<body>
 		<div class="header">
 		    <a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
+			<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>
+			<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>
+			<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>
 		</div>
 		<div class="main">
             <form class="modal-content" action="sign_up.php" method="post">

@@ -1,9 +1,9 @@
 <?php
 session_start();
 session_destroy();
-header( "refresh:3;url=index.php" );
+header( "location:index.php" );
 ?>
-<html>
+<!-- <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8">
@@ -28,4 +28,4 @@ header( "refresh:3;url=index.php" );
 
 	</div>
 	</body>
-</html>
+</html> -->

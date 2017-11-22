@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<body>
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
-			<div class="box1">
  			<?php
  			if (isset($_SESSION[LOGGED_ON]))
  			{
@@ -52,11 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
  			}
  			else
  			{
- 				echo '<a href="sign_in.php"><button class="button" type="button" name="Login">Sign in</button></a>';
- 				echo '<a href="sign_up.php"><button class="button" type="button" name="Sign up">Sign up</button></a>';
+				echo '<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
  			}
  			?>
- 			</div>
 		</div>
 		<div class="main">
 		<form class="modal-content" action="sign_in.php" method="post">
@@ -71,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
                 <div class="clearfix" style="text-align: center;">
 				<a href="resetpsw.php"><button class="signup" type="button" name="resetpsw">I forgot my password</button></a>
-  
+
 				<button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Sign Up</button>
                 </div>
             </div>

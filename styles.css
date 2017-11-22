@@ -8,7 +8,10 @@ body
 {
 	/* position: relative; */
 	/* text-align: center; */
-	float: inherit;
+	/*float: inherit;*/
+	display : flex;
+	justify-content: flex-end;
+	flex-direction: row;
 	background-color: rgb(78, 99, 110);
 	height: 6vw;
 	max-height: 3.5cm;
@@ -17,10 +20,11 @@ body
 
 .box1
 {
+	display: inline-block;
 	position: relative;
 	width: 15vw;
 	height: 100%;
-	float: right;
+	/*float: right;*/
 }
 
 .main
@@ -64,25 +68,24 @@ body
 
 .title
 {
-	position: relative;
+	/*position: relative;*/
 	font-family: arial;
 	background-color: rgb(78, 99, 110);
 	border: none;
-	margin: auto;
-	margin-left: 25vw;
-	float: left;
+	margin: auto;;
+	margin-left: -47vw;
+	/*float: left;*/
 	height: 100%;
-	width: 50%;
+	width: 100%;
 	font-size: 4vw;
 	color: black;
 }
 .title:focus {outline:0;}
 
-.title:hover
+/*.title:hover
 {
 	background-color: rgb(255, 255, 255);
-
-}
+}*/
 .login
 {
 	height: 1.7vw;
@@ -99,10 +102,10 @@ body
 	margin-top: 2vw;
 	border: none;
 }
+
 .button
 {
 	position: relative;
-
 	float: right;
 	width: 100%;
 	height: 50%;
@@ -112,11 +115,29 @@ body
 	background-color: rgb(78, 99, 110);
 	border: none;
 }
+
 .button:hover
 {
 	background-color: rgb(204, 204, 204);
 }
 
+.icon
+{
+	display: inline-block;
+	float: right;
+	width: 100%;
+	height: 100%;
+	font-size: 2vw;
+	font-family: arial;
+	color: white;
+	background-color: rgb(78, 99, 110);
+	border: none;
+}
+
+.icon:hover
+{
+	background-color: rgb(204, 204, 204);
+}
 
 .video
 {
@@ -126,6 +147,7 @@ body
 
 .cambutton
 {
+	background-color: rgb(245, 247, 248);
 	margin-top: 0.3vw;
 	border-radius: 7px;
 	display: block;
@@ -297,4 +319,9 @@ input[type=text], input[type=password], input[type=email] {
 	color: white;
 	border: none;
 	position: relative;
+}
+
+.testlol
+{
+
 }
