@@ -69,7 +69,6 @@ body
 .title
 {
 	/*position: relative;*/
-	/*position: absolute;*/
 	font-family: arial;
 	background-color: rgb(78, 99, 110);
 	border: none;
@@ -299,6 +298,28 @@ input[type=text], input[type=password], input[type=email] {
 }
 
 .delbutton:hover
+{
+	opacity: 1;
+}
+
+.likebutton
+{
+	position: relative;
+	top : -11vw;
+	opacity: 0;
+	/*padding : 15px;*/
+	width: 5%;
+	margin-left: 5.2vw;
+	transition: .3s ease;
+	z-index: 2;
+}
+
+.likebutton:hover
+{
+	opacity: 1;
+}
+
+.gallery:hover + .likebutton
 {
 	opacity: 1;
 }
