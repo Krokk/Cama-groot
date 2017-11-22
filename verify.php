@@ -28,7 +28,7 @@
 				));
 				$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 				$result = $con->query("SELECT username FROM users WHERE email = " . "'" . $email . "'");
-				$donnees = $result->fetch();			
+				$donnees = $result->fetch();
 				$_SESSION[LOGGED_ON] =	$donnees['username'];
 			}
 			catch(PDOexception $e)
@@ -37,6 +37,10 @@
 			}
 			header( "refresh:3;url=index.php" );
 		}
+	}
+	else
+	{
+		header('location:index.php');
 	}
  ?>
  <html>
@@ -66,7 +70,7 @@
  		</div>
 		 <div class="main" style="text-align:center";></br>
         </br>Welcome to Camagru, your account has been activated</br></br></br></br>
-        You will be redirected to the <a href="index.php"><type="text" class="" name="button">Homepage<a/> in 5 sec ...  
+        You will be redirected to the <a href="index.php"><type="text" class="" name="button">Homepage<a/> in 5 sec ...
         </div></br>
  		<div class="footer">
  		</div>

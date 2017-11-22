@@ -47,8 +47,8 @@ $_SESSION[message] = '';
 				echo "<div class='del'>
 						<img class='gallery' src='./pics/" . $value . "'/>
 						<div class='likebutton'>
-							<img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/>
-							<img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/>
+							<a href='like.php?pic=" . $value . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
+							<a href='comment.php?pic=" . $value . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
 							</div>
 					</div>";
 
