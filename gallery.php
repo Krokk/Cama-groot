@@ -45,13 +45,15 @@ $_SESSION[message] = '';
 			foreach ($result as $value)
 			{
 				echo "<div class='del'>
-						<img class='gallery' src='./pics/" . $value . "'/>
-						<div class='likebutton'>
-							<a href='like.php?pic=" . $value . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
-							<a href='comment.php?pic=" . $value . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
-							</div>
-					</div>";
-
+						<img class='gallery' src='./pics/" . $value . "'/>";
+						if (isset($_SESSION[LOGGED_ON]))
+						{
+							echo "<div class='likebutton'>
+									<a href='like.php?pic=" . $value . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
+									<a href='comment.php?pic=" . $value . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
+									</div>";
+						}
+						echo "</div>";
 			}
 			echo "</div>";
         ?>
