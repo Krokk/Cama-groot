@@ -13,10 +13,6 @@ header( "location:index.php" );
 	<div class="header">
 		<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
 		<div class="box1">
-			<?php
-			echo '<a href="sign_in.php"><button class="button" type="button" name="Login">Sign in</button></a>';
-			echo '<a href="sign_up.php"><button class="button" type="button" name="Sign up"> Register</button></a>';
-			?>
 		</div>
 	</div>
 	<div class="main">

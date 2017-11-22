@@ -69,11 +69,12 @@ body
 .title
 {
 	/*position: relative;*/
+	/*position: absolute;*/
 	font-family: arial;
 	background-color: rgb(78, 99, 110);
 	border: none;
 	margin: auto;;
-	margin-left: -47vw;
+	margin-left: -43vw;
 	/*float: left;*/
 	height: 100%;
 	width: 100%;
@@ -133,6 +134,8 @@ body
 	background-color: rgb(78, 99, 110);
 	border: none;
 }
+
+.icon:focus {outline:0;}
 
 .icon:hover
 {
@@ -203,6 +206,9 @@ input[type=text], input[type=password], input[type=email] {
     cursor: pointer;
     width: 36%;
 }
+
+.signup:focus {outline:0;}
+
 
 .signup:hover
 {
