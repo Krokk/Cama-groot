@@ -90,8 +90,7 @@
 		`LikeID` INT NOT NULL AUTO_INCREMENT,
 		`photoID` INT NOT NULL,
 		`UserID` INT NOT NULL,
-		`timet` DATETIME NOT NULL,
-		PRIMARY KEY (PhotoID, UserID));
+		PRIMARY KEY (LikeID));
 			";
 		$conn->exec($qry);
 	}
