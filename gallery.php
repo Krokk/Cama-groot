@@ -28,8 +28,6 @@ $_SESSION[message] = '';
 		</div>
 		<div class="main">
         <?php
-        // if ($_SESSION[LOGGED_ON])
-        // {
             try
             {
             // requete pour recupere les photos par utilisateur
@@ -48,11 +46,14 @@ $_SESSION[message] = '';
 			{
 				echo "<div class='del'>
 						<img class='gallery' src='./pics/" . $value . "'/>
+						<div class='likebutton'>
+							<img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/>
+							<img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/>
+							</div>
 					</div>";
 
 			}
 			echo "</div>";
-        // }
         ?>
 
 		</div>
