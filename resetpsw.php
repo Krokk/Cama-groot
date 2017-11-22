@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $req->execute(array(':email' => $email));
 		if ($req->rowCount() > 0)
 		{
-            $datauser = $req->fetch();			
+            $datauser = $req->fetch();
             $username =	$datauser['username'];
             try
             {
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 echo "Error Database : " . $e->getMessage();
             }
-            
+
             $dataresetstate = $result->fetch();
             $activated = $dataresetstate[activated];
             if ($activated == 1)
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         ':email' => $email,
                         ':conflink' => $conflink
                     ));
-                }		
+                }
                 catch(PDOexception $e)
                 {
                     echo "Error Database : " . $e->getMessage();
@@ -44,27 +44,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 $to       =  $email;
                 $subject  = 'Camagru | Reset your password';
                 $message  = '
-    
+
                 This email has been sent automatically by Camagru to your request to recorver your password.
-    
+
                 ------------------------
                 Username: '.$username.'
                 ------------------------
-    
+
                 Please click this link to reset your account password:
                 http://localhost:8080/Camagru/verifypsw.php?email='.$email.'&conflink='.$conflink.'
-    
+
                 ';
                 $headers = 'From:noreply@camagru.com' . "\r\n";
                 mail($to, $subject, $message, $headers);
                 $_SESSION[login_success] = "Reset Email has been sent";
-                header( "refresh:3;url=index.php" );    
+                header( "refresh:3;url=index.php" );
             }
             else
             {
-                $_SESSION[login_err] = "Your account is not activated yet, please check your Inbox or Spam";    
+                $_SESSION[login_err] = "Your account is not activated yet, please check your Inbox or Spam";
             }
-            
+
         }
 		else
 		{
@@ -86,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<body>
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
-			<div class="box1">
  			<?php
  			if (isset($_SESSION[LOGGED_ON]))
  			{
@@ -95,11 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
  			}
  			else
  			{
- 				echo '<a href="sign_in.php"><button class="button" type="button" name="Login">Sign in</button></a>';
- 				echo '<a href="sign_up.php"><button class="button" type="button" name="Sign up">Sign up</button></a>';
+				echo '<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
  			}
  			?>
- 			</div>
 		</div>
 		<div class="main">
 		<form class="modal-content" action="resetpsw.php" method="post">
