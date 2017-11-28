@@ -1,8 +1,9 @@
 <?php
 	session_start();
-	
+
 	if ($_SESSION[LOGGED_ON])
 	{
+		$pic = $_POST[pic];
 		try{
 			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -10,7 +11,7 @@
 			$req->execute(array(
 				':url' => $_POST[pic]
 			));
-			$idphoto = $req->fetch(PDO::FETCH_COLUMN, 0);    
+			$idphoto = $req->fetch(PDO::FETCH_COLUMN, 0);
 		}
 		catch(PDOException $e)
 		{
@@ -31,8 +32,8 @@
 		{
 			echo "Couldn't write in Database: " . $e->getMessage();
 		}
-		header( "refresh:0;url=gallery.php" );
+		header('refresh:0;url=comment.php?pic=' . $pic . '');
 
 	}
-	
+
  ?>
