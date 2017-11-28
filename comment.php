@@ -43,7 +43,7 @@
 					$req->execute(array(
 						':url' => $pic
 					));
-					$idphoto = $req->fetch(PDO::FETCH_COLUMN, 0);    
+					$idphoto = $req->fetch(PDO::FETCH_COLUMN, 0);
 				}
 				catch(PDOException $e)
 				{
@@ -52,15 +52,19 @@
 				try{
 					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-					$req = $conn->prepare("SELECT text FROM comments where photoID = :photoid");
+					$req = $conn->prepare("SELECT text, author FROM comments where photoID = :photoid");
 					$req->execute(array(
 						':photoid' => $idphoto
 					));
-					$comment = $req->fetchall(PDO::FETCH_COLUMN, 0);    
+					$comment = $req->fetchall();
 				}
 				catch(PDOException $e)
 				{
 					echo "Couldn't write in Database: " . $e->getMessage();
+				}
+				foreach ($comment as $value)
+				{
+					echo $value[author] . ": " . $value[text] . '<br>';
 				}
 			}
 			?>
