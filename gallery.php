@@ -45,12 +45,12 @@ $_SESSION[message] = '';
 			foreach ($result as $value)
 			{
 				echo "<div class='del'>
-						<img class='gallery' src='./pics/" . $value . "'/>";
+						<img class='gallery' src='./pics/" . $value[url] . "'/>";
 						if (isset($_SESSION[LOGGED_ON]))
 						{
 							echo "<div class='likebutton'>
-									<a href='like.php?pic=" . $value . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
-									<a href='comment.php?pic=" . $value . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
+									<a href='like.php?pic=" . $value[url] . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
+									<a href='comment.php?pic=" . $value[url] . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
 									</div>";
 						}
 						echo "<div class='likencomment'>";
@@ -58,10 +58,9 @@ $_SESSION[message] = '';
 						{
 							$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$req = $conn->prepare("SELECT LikeID FROM likes WHERE Userid = :UserID AND photoID = :photoID");
+							$req = $conn->prepare("SELECT LikeID FROM likes WHERE photoID = :photoID");
 							$req->execute(array(
-								':UserID' => $id,
-								':photoID' => $idphoto
+								':photoID' => $value[PhotoID]
 							));
 						}
 						catch(PDOException $e)
@@ -69,7 +68,7 @@ $_SESSION[message] = '';
 							echo "Couldn't write in Database: " . $e->getMessage();
 						}
 						$count = $req->rowCount();
-						echo $count;
+						echo $count . '  ❤' ;
 						echo "</div>";
 
 						echo "</div>";

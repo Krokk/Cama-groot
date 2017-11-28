@@ -2,7 +2,6 @@
 session_start();
 $_SESSION["message"] = '';
 
-    
     if ($_SESSION[LOGGED_ON])
     {
         $id = $_SESSION[ID];
@@ -38,7 +37,6 @@ $_SESSION["message"] = '';
         {
             try
             {
-        
                 $conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $req = $conn->prepare("DELETE FROM likes WHERE UserID = :UserID AND photoID = :photoID");
@@ -51,14 +49,12 @@ $_SESSION["message"] = '';
             {
                 echo "Couldn't write in Database: " . $e->getMessage();
             }
-            echo "DISLIKED";
-            
+            header( "refresh:0;url=gallery.php" );
         }
         else
         {
             try
             {
-        
                 $conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $req = $conn->prepare("INSERT INTO likes (UserID, photoID) VALUES (:UserID, :photoID)");
@@ -71,7 +67,7 @@ $_SESSION["message"] = '';
             {
                 echo "Couldn't write in Database: " . $e->getMessage();
             }
-            echo "LIKED";
+            header( "refresh:0;url=gallery.php" );
         }
     }
     else
