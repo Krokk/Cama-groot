@@ -45,6 +45,7 @@ body
 	overflow: scroll;
 	display: block;
 	height: 85%;
+	margin: 1vw 0 0 0;
 }
 
 .mainreg
@@ -73,7 +74,7 @@ body
 	background-color: rgb(78, 99, 110);
 	border: none;
 	margin: auto;;
-	margin-left: -43vw;
+	margin-left: -47vw;
 	/*float: left;*/
 	height: 100%;
 	width: 100%;
@@ -259,10 +260,8 @@ input[type=text], input[type=password], input[type=email] {
 .filters
 {
        float: right;
-	   margin: auto;
-	   /*margin-right: 1px;
-       margin-top: 1vw;*/
-       /*border: 1px solid black;*/
+	   margin: 1vw 0 0 0;
+
 }
 
 .filtersize
@@ -284,11 +283,20 @@ input[type=text], input[type=password], input[type=email] {
 .del
 {
 	margin: 0 0 1vw 1vw;
-	height: 14vw;
+	height: 18vw;
 	width: 14vw;
 	display: inline-block;
 }
 
+.likencomment
+{
+	width: 14vw;
+	top: -8vw;
+	position: relative;
+	height: 3vw;
+	margin: 0 0 0 1vw;
+	z-index: 2;
+}
 .delbutton
 {
 	position: relative;

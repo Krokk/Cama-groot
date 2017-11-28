@@ -96,7 +96,7 @@ if ($_SESSION[LOGGED_ON])
 		startbutton  = document.querySelector('#startbutton'),
 	  filter	= document.querySelector('#blanka'),
 		
-		width = (window.innerWidth / 5 ) ;
+		width = (window.innerWidth  ) ;
 		height = window.innerHeight;
 			// width = 320,
 			// height = 320;

@@ -33,9 +33,9 @@ $_SESSION[message] = '';
             // requete pour recupere les photos par utilisateur
             // $req = $conn->prepare('SELECT url FROM Photos WHERE username = :username ORDER BY timet');
             $conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-            $req = $conn->prepare('SELECT url FROM Photos ORDER BY timet DESC');
+            $req = $conn->prepare('SELECT url, PhotoID FROM Photos ORDER BY timet DESC');
     		$req->execute();
-            $result = $req->fetchAll(PDO::FETCH_COLUMN, 0);
+            $result = $req->fetchAll();
             }
             catch (Exception $e)
             {
@@ -53,6 +53,25 @@ $_SESSION[message] = '';
 									<a href='comment.php?pic=" . $value . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
 									</div>";
 						}
+						echo "<div class='likencomment'>";
+						try
+						{
+							$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$req = $conn->prepare("SELECT LikeID FROM likes WHERE Userid = :UserID AND photoID = :photoID");
+							$req->execute(array(
+								':UserID' => $id,
+								':photoID' => $idphoto
+							));
+						}
+						catch(PDOException $e)
+						{
+							echo "Couldn't write in Database: " . $e->getMessage();
+						}
+						$count = $req->rowCount();
+						echo $count;
+						echo "</div>";
+
 						echo "</div>";
 			}
 			echo "</div>";
