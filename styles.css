@@ -1,14 +1,10 @@
 body
 {
 	background-color: rgb(245, 247, 248);
-
 	margin: 0 0 0 0;
 }
 .header
 {
-	/* position: relative; */
-	/* text-align: center; */
-	/*float: inherit;*/
 	display : flex;
 	justify-content: flex-end;
 	flex-direction: row;
@@ -24,7 +20,6 @@ body
 	position: relative;
 	width: 15vw;
 	height: 100%;
-	/*float: right;*/
 }
 
 .main
@@ -38,7 +33,7 @@ body
 #Global #gauche {
     float:left;
 	margin-left: 5%;
-    width:50%;
+    width:55%;
 }
 #Global #droite {
 	display: inline-block;
@@ -69,13 +64,11 @@ body
 
 .title
 {
-	/*position: relative;*/
 	font-family: arial;
 	background-color: rgb(78, 99, 110);
 	border: none;
 	margin: auto;;
 	margin-left: -47vw;
-	/*float: left;*/
 	height: 100%;
 	width: 100%;
 	font-size: 4vw;
@@ -83,10 +76,6 @@ body
 }
 .title:focus {outline:0;}
 
-/*.title:hover
-{
-	background-color: rgb(255, 255, 255);
-}*/
 .login
 {
 	height: 1.7vw;
@@ -210,7 +199,6 @@ input[type=text], input[type=password], input[type=email] {
 
 .signup:focus {outline:0;}
 
-
 .signup:hover
 {
 	background-color: rgb(204, 204, 204);
@@ -302,7 +290,6 @@ input[type=text], input[type=password], input[type=email] {
 	position: relative;
 	top : -9vw;
 	opacity: 0;
-	/*padding : 15px;*/
 	width: 5%;
 	margin-left: 5.2vw;
 	transition: .3s ease;

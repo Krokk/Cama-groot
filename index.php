@@ -96,10 +96,8 @@ if ($_SESSION[LOGGED_ON])
 		startbutton  = document.querySelector('#startbutton'),
 	  filter	= document.querySelector('#blanka'),
 		
-		width = (window.innerWidth  ) ;
+		width = (window.innerWidth / 5 ) ;
 		height = window.innerHeight;
-			// width = 320,
-			// height = 320;
 
   	navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
