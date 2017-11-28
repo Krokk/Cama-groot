@@ -24,7 +24,8 @@
 				echo '<img src="./pics/' . $pic . ' "alt="missing" style="height:24vw;width:34vw;margin-top:3vw;" />';
 				echo '<form class="" action="addcomment.php" method="post">
 					<input type="text" placeholder="Your comment here" name="comment" style="width:34vw;" required>
-					<br>
+					<input type="hidden" name="pic" value="' . $pic . '"/>';
+				echo '<br>
 					<input type="submit" value="submit">
 				</form>';
 
