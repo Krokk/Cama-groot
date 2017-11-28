@@ -33,9 +33,38 @@
 				?>
 			</div>
 			<div id="droite">
-				<form class="" action="index.html" method="post">
+			<?php
+			if ($_SESSION[LOGGED_ON])
+			{
+				try{
+					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					$req = $conn->prepare("SELECT PhotoID FROM photos where url = :url");
+					$req->execute(array(
+						':url' => $pic
+					));
+					$idphoto = $req->fetch(PDO::FETCH_COLUMN, 0);    
+				}
+				catch(PDOException $e)
+				{
+					echo "Couldn't write in Database: " . $e->getMessage();
+	}
+				try{
+					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					$req = $conn->prepare("SELECT text FROM comments where photoID = :photoid");
+					$req->execute(array(
+						':photoid' => $idphoto
+					));
+					$comment = $req->fetchall(PDO::FETCH_COLUMN, 0);    
+				}
+				catch(PDOException $e)
+				{
+					echo "Couldn't write in Database: " . $e->getMessage();
+				}
+			}
+			?>
 
-				</form>
 			</div>
 		</div>
 			<div class="footer">
