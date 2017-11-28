@@ -3,6 +3,7 @@ session_start();
 $_SESSION["message"] = '';
 $_SESSION[login_success] = '';
 $_SESSION[login_err] = '';
+$_SESSION[id] = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
@@ -16,8 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			));
 		if ($req->rowCount() > 0)
 		{
+			try{
+				$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$req = $conn->prepare("SELECT id FROM users where username = :username");
+				$req->execute(array(
+					':username' => $_SESSION['LOGGED_ON']
+				));
+				$id = $req->fetch(PDO::FETCH_COLUMN, 0);      
+				}
+				catch(PDOException $e)
+				{
+					echo "Couldn't write in Database: " . $e->getMessage();
+				}
 			$donnees = $req->fetch();
 			$_SESSION[login_success] = "You are looged on " .$_POST['username'];
+			$_SESSION[id] = $id;
 			$_SESSION[LOGGED_ON] =	$_POST['username'];
 			header( "refresh:1;url=index.php" );
 		}
