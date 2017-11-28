@@ -141,9 +141,10 @@ body
 	background-color: rgb(204, 204, 204);
 }
 
-.video
+#video
 {
-	max-width: 100%;
+	margin: 1vw 0 0 0;
+	max-width: 40%;
 	height: auto;
 }
 
@@ -282,6 +283,9 @@ input[type=text], input[type=password], input[type=email] {
 
 .del
 {
+	margin: 0 0 1vw 1vw;
+	height: 14vw;
+	width: 14vw;
 	display: inline-block;
 }
 
@@ -307,7 +311,6 @@ input[type=text], input[type=password], input[type=email] {
 	position: relative;
 	top : -11vw;
 	opacity: 0;
-	/*padding : 15px;*/
 	width: 5%;
 	margin-left: 5.2vw;
 	transition: .3s ease;

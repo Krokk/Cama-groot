@@ -27,6 +27,7 @@
 					<br>
 					<input type="submit" value="submit">
 				</form>';
+
 				?>
 			</div>
 			<div id="droite">

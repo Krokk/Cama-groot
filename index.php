@@ -86,30 +86,30 @@ if ($_SESSION[LOGGED_ON])
 
 <script>
 (function() {
-
-  var streaming = false,
-      video        = document.querySelector('#video'),
-      cover        = document.querySelector('#cover'),
-      canvas       = document.querySelector('#canvas'),
-	  context	   = canvas.getContext('2d'),
-      photo        = document.querySelector('#photo'),
-      startbutton  = document.querySelector('#startbutton'),
+		var streaming = false,
+    video        = document.querySelector('#video'),
+    cover        = document.querySelector('#cover'),
+    canvas       = document.querySelector('#canvas'),
+		context	   = canvas.getContext('2d'),
+    photo        = document.querySelector('#photo'),
+    photo2       = document.querySelector('#photo2'),
+		startbutton  = document.querySelector('#startbutton'),
 	  filter	= document.querySelector('#blanka'),
-
-			width = (window.innerWidth / 5 ) ;
-			height = window.innerHeight;
+		
+		width = (window.innerWidth / 5 ) ;
+		height = window.innerHeight;
 			// width = 320,
 			// height = 320;
 
-  navigator.getMedia = ( navigator.getUserMedia ||
+  	navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
                          navigator.mozGetUserMedia ||
                          navigator.msGetUserMedia);
 
-  navigator.getMedia(
+  	navigator.getMedia(
     {
-      video: true,
-      audio: false
+    	video: true,
+    	audio: false
     },
     function(stream) {
       if (navigator.mozGetUserMedia) {
@@ -144,17 +144,17 @@ if ($_SESSION[LOGGED_ON])
 
 		tmp.src = data;
 
-		// Debut Ajax
 		var xml = new XMLHttpRequest()
 		xml.open('POST', 'datastorage.php', true);
 		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xml.send("filter=" + document.querySelector('input[name="filter"]:checked').value + "&data=" + data);
-		// Fin Ajax
 
 		xml.onload = function()
 		{
+
 			var response = xml.responseText;
 			photo.src = response;
+			var response2 = response;
 			console.log(response);
 		}
 
