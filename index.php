@@ -49,6 +49,11 @@
 					<button type="submit" class="cambutton" id="startbutton"><img src="./ressources/icons/photo-camera.png" style="width:4vw;height=4vw;"/></button>
 					<img id="photo" />
 					<canvas id="canvas" style="display:none;"></canvas>
+					<form class="uplod" action="upload.php" method="post" enctype="multipart/form-data">
+					Select image to upload:
+					<input type="file" name="fileToUpload" id="fileToUpload" required>
+					<input type="submit" value="Upload Image" name="submit">
+					</form>
 				</div>
 				<div id="droite">';
 					foreach ($pics as $value)

@@ -254,25 +254,30 @@ input[type=text], input[type=password], input[type=email] {
 
 .filtersize
 {
-       width: 9vw;
-       height: 9vw;
+       width: 7vw;
+       height: 7vw;
 }
 
 .gallery
 {
 	border-radius: 1vw;
 	padding: 0.2vw;
-	width: 14vw;
-	height: 14vw;
+	width: 13vw;
+	height: 12vw;
 	transition: .3s ease;
 	z-index: 1;
+}
+
+.uplod
+{
+	position : absolute
 }
 
 .del
 {
 	margin: 0 0 1vw 1vw;
-	height: 16vw;
-	width: 14vw;
+	height: 12vw;
+	width: 13vw;
 	display: inline-block;
 }
 

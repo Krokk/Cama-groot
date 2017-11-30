@@ -7,84 +7,105 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         if (preg_match("/^[a-zA-Z0-9]*$/", $username = $_POST['username']))
         {
-            try
+            if(!strlen($_POST['password']) < 8)
             {
-                $email = $_POST[email];
-                $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                $request = $con->prepare("SELECT email FROM users WHERE email = :email;");
-                $request->bindParam(':email', $email);
-                $request->execute();
-            }
-            catch(PDOException $e)
-            {
-                echo "Couldn't write in database: " . $e->getMessage();
-            }
-            if ($request->rowCount() == 0)
-            {
-                if (filter_var($email = $_POST['email'], FILTER_VALIDATE_EMAIL))
+                if(preg_match("#[0-9]+#", $_POST['password']))
                 {
-                    try
-                    {
-                        $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                        $request = $con->prepare("SELECT username FROM users WHERE username = :name;");
-                        $request->bindParam(':name', $username);
-                        $request->execute();
-                    }
-                    catch(PDOException $e)
-                    {
-                        echo "Couldn't write in database: " . $e->getMessage();
-                    }
-                    if ($request->rowCount() == 0)
+                    if(preg_match("#[a-zA-Z]+#", $_POST['password']))
                     {
                         try
                         {
-                            $conflink = md5( rand(0,1000) );
-                            $password = hash("sha512", $_POST[password]);
-                            $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                            $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink) VALUES (:username, :password, :email, :conflink)');
-                            $req->execute(array(
-                                ':username' => $_POST['username'],
-                                ':password' => $password,
-                                ':email' => $email,
-                                ':conflink' => $conflink));
+                            $email = $_POST[email];
+                            $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                            $request = $con->prepare("SELECT email FROM users WHERE email = :email;");
+                            $request->bindParam(':email', $email);
+                            $request->execute();
                         }
                         catch(PDOException $e)
                         {
                             echo "Couldn't write in database: " . $e->getMessage();
                         }
-                        $to       =  $email;
-                        $subject  = 'Signup | Verification';
-                        $message  = '
-
-                        Thanks for signing up!
-                        Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-
-                        ------------------------
-                        Username: '.$username.'
-                        ------------------------
-
-                        Please click this link to activate your account:
-                        http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
-
-                        ';
-
-                        $headers = 'From:noreply@camagru.com' . "\r\n";
-                        mail($to, $subject, $message, $headers);
-                        header( "refresh:0;url=account_created.php" );
+                        if ($request->rowCount() == 0)
+                        {
+                            if (filter_var($email = $_POST['email'], FILTER_VALIDATE_EMAIL))
+                            {
+                                try
+                                {
+                                    $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                                    $request = $con->prepare("SELECT username FROM users WHERE username = :name;");
+                                    $request->bindParam(':name', $username);
+                                    $request->execute();
+                                }
+                                catch(PDOException $e)
+                                {
+                                    echo "Couldn't write in database: " . $e->getMessage();
+                                }
+                                if ($request->rowCount() == 0)
+                                {
+                                    try
+                                    {
+                                        $conflink = md5( rand(0,1000) );
+                                        $password = hash("sha512", $_POST[password]);
+                                        $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                                        $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink) VALUES (:username, :password, :email, :conflink)');
+                                        $req->execute(array(
+                                            ':username' => $_POST['username'],
+                                            ':password' => $password,
+                                            ':email' => $email,
+                                            ':conflink' => $conflink));
+                                    }
+                                    catch(PDOException $e)
+                                    {
+                                        echo "Couldn't write in database: " . $e->getMessage();
+                                    }
+                                    $to       =  $email;
+                                    $subject  = 'Signup | Verification';
+                                    $message  = '
+            
+                                    Thanks for signing up!
+                                    Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+            
+                                    ------------------------
+                                    Username: '.$username.'
+                                    ------------------------
+            
+                                    Please click this link to activate your account:
+                                    http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
+            
+                                    ';
+            
+                                    $headers = 'From:noreply@camagru.com' . "\r\n";
+                                    mail($to, $subject, $message, $headers);
+                                    header( "refresh:0;url=account_created.php" );
+                                }
+                                else
+                                {
+                                    $_SESSION['message'] ='Username already taken';
+                                }
+                            }
+                            else
+                            {
+                                $_SESSION['message'] ='Invalid email format';
+                            }
+                        }
+                        else
+                        {
+                            $_SESSION['message'] = 'Email already used';
+                        }
                     }
                     else
                     {
-                        $_SESSION['message'] ='Username already taken';
+                        $_SESSION['message'] = 'Password must include at least one letter';
                     }
                 }
                 else
                 {
-                    $_SESSION['message'] ='Invalid email format';
+                    $_SESSION['message'] = 'Password must include at least one number';
                 }
             }
             else
             {
-                $_SESSION['message'] = 'Email already used';
+                $_SESSION['message'] = 'Password must be at least 8 characters long';
             }
         }
         else
