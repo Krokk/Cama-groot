@@ -7,7 +7,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-
 		<meta charset="utf-8">
 		<title></title>
 	</head>
@@ -17,7 +16,6 @@
 			<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>
 			<a href="logout.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logout.png" style="width:4.5vw;height:4vw;"</img></button></a>
 		</div>
-
 		<div id="global">
 			<div id="gauche">
 				<?php
@@ -28,8 +26,6 @@
 				echo '<br>
 					<input type="submit" value="submit">
 				</form>';
-
-
 				?>
 			</div>
 			<div id="droite">
@@ -48,7 +44,7 @@
 				catch(PDOException $e)
 				{
 					echo "Couldn't write in Database: " . $e->getMessage();
-	}
+				}
 				try{
 					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -68,7 +64,6 @@
 				}
 			}
 			?>
-
 			</div>
 		</div>
 			<div class="footer">

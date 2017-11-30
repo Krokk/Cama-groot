@@ -45,41 +45,38 @@ $_SESSION[message] = '';
 			foreach ($result as $value)
 			{
 				echo "<div class='del'>
-						<img class='gallery' src='./pics/" . $value[url] . "'/>";
-						if (isset($_SESSION[LOGGED_ON]))
-						{
-							echo "<div class='likebutton'>
-									<a href='like.php?pic=" . $value[url] . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
-									<a href='comment.php?pic=" . $value[url] . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
-									</div>";
-						}
-						echo "<div class='likencomment'>";
-						try
-						{
-							$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$req = $conn->prepare("SELECT LikeID FROM likes WHERE photoID = :photoID");
-							$req->execute(array(
-								':photoID' => $value[PhotoID]
-							));
-						}
-						catch(PDOException $e)
-						{
-							echo "Couldn't write in Database: " . $e->getMessage();
-						}
-						$count = $req->rowCount();
-						echo $count . '  ❤' ;
-						echo "</div>";
-
-						echo "</div>";
-			}
+				<img class='gallery' src='./pics/" . $value[url] . "'/>";
+				if (isset($_SESSION[LOGGED_ON]))
+				{
+					echo "<div class='likebutton'>
+							<a href='like.php?pic=" . $value[url] . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
+							<a href='comment.php?pic=" . $value[url] . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
+							</div>";
+				
+					echo "<div class='likencomment'>";
+					try
+					{
+						$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+						$req = $conn->prepare("SELECT LikeID FROM likes WHERE photoID = :photoID");
+						$req->execute(array(
+							':photoID' => $value[PhotoID]
+						));
+					}
+					catch(PDOException $e)
+					{
+						echo "Couldn't write in Database: " . $e->getMessage();
+					}
+					$count = $req->rowCount();
+					echo $count . '  ❤' ;
+					echo "</div>";
+				}
 			echo "</div>";
-        ?>
-
+			}
+		echo "</div>";
+		?>
 		</div>
 		<div class="footer">
-
 		</div>
-
 	</body>
 </html>

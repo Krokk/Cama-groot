@@ -4,7 +4,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-
 		<meta charset="utf-8">
 		<title></title>
 	</head>
@@ -25,7 +24,6 @@
 			}
 			?>
 		</div>
-
 		<?php
 		if (isset($_SESSION[LOGGED_ON]))
 		{
@@ -67,13 +65,9 @@
 						}
 					}
 				 echo '</div>
-			</div>
-
-				';
-
+			</div>';
 		}
 		?>
-
 		<div class="footer">
 		</div>
 	</body>
@@ -83,7 +77,6 @@
 if ($_SESSION[LOGGED_ON])
 {
 ?>
-
 <script>
 (function() {
 		var streaming = false,
@@ -92,13 +85,12 @@ if ($_SESSION[LOGGED_ON])
     canvas       = document.querySelector('#canvas'),
 		context	   = canvas.getContext('2d'),
     photo        = document.querySelector('#photo'),
-    photo2       = document.querySelector('#photo2'),
 		startbutton  = document.querySelector('#startbutton'),
 	  filter	= document.querySelector('#blanka'),
 		
 		width = (window.innerWidth / 5 ) ;
 		height = window.innerHeight;
-
+			
   	navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
                          navigator.mozGetUserMedia ||
@@ -139,30 +131,23 @@ if ($_SESSION[LOGGED_ON])
 		context.drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL("image/png");
 		var tmp = new Image();
-
 		tmp.src = data;
 
 		var xml = new XMLHttpRequest()
 		xml.open('POST', 'datastorage.php', true);
 		xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xml.send("filter=" + document.querySelector('input[name="filter"]:checked').value + "&data=" + data);
-
 		xml.onload = function()
 		{
-
 			var response = xml.responseText;
 			photo.src = response;
-			var response2 = response;
 			console.log(response);
 		}
-
    }
-
   startbutton.addEventListener('click', function(ev)
   {
 	takepicture();
   }, false);
-
 })();
 </script>
 <?php

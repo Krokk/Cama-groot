@@ -74,7 +74,4 @@ $_SESSION["message"] = '';
     {
         echo "You need to be Logged to use this feature";
     }
-    
-    
-    
  ?>
