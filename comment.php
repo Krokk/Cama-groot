@@ -60,7 +60,7 @@
 				}
 				foreach ($comment as $value)
 				{
-					echo $value[author] . ": " . $value[text] . '<br>';
+					echo htmlspecialchars($value[author] . ": " . $value[text] . '<br>');
 				}
 			}
 			?>

@@ -276,8 +276,8 @@ input[type=text], input[type=password], input[type=email] {
 .del
 {
 	margin: 0 0 1vw 1vw;
-	height: 12vw;
-	width: 13vw;
+	height: 13vw;
+	width: 14vw;
 	display: inline-block;
 }
 
