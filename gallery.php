@@ -118,7 +118,6 @@ function putImages(){
                   if(files[i] != ""){
                      document.getElementById("container").innerHTML += '<img class="del" src="pics/'+files[i]+'" />';
                      j++;
-                   
                      if(j == 3 || j == 6)
                           document.getElementById("container").innerHTML += '';
                       else if(j == 9){
