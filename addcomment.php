@@ -4,7 +4,6 @@
 	if ($_SESSION[LOGGED_ON])
 	{
 		$pic = $_POST[pic];
-		echo "ok";
 		try{
 			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +17,7 @@
 		{
 			echo "Couldn't write in Database: " . $e->getMessage();
 		}
-		
+
 		try{
 			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -54,7 +53,7 @@
 		Your picture has been commented,
 
 		------------------------
-		'.$_SESSION[LOGGED_ON].' : '.$_POST[comment].' 
+		'.$_SESSION[LOGGED_ON].' : '.$_POST[comment].'
 		------------------------
 
 		Click on this link to see more:
@@ -63,8 +62,8 @@
 		';
 
 		$headers = 'From:noreply@camagru.com' . "\r\n";
-		
-		mail($to, $subject, $message, $headers);		
+
+		mail($to, $subject, $message, $headers);
 		header('refresh:0;url=comment.php?pic=' . $pic . '');
 
 	}

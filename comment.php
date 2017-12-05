@@ -25,7 +25,7 @@
 					<input type="hidden" name="pic" value="' . $pic . '"/>';
 				echo '<br>
 					<input type="submit" value="submit">
-				</form>';
+					</form>';
 				?>
 			</div>
 			<div id="droite">
@@ -60,7 +60,8 @@
 				}
 				foreach ($comment as $value)
 				{
-					echo htmlspecialchars($value[author] . ": " . $value[text] . '<br>');
+					echo htmlspecialchars($value[author] . ": " . $value[text]);
+					echo "<br>";
 				}
 			}
 			?>

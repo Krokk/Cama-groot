@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["message"] = '';
+$_SESSION[message] = '';
 $_SESSION[login_success] = '';
 $_SESSION[login_err] = '';
 $_SESSION[ID] = '';
@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			));
 		if ($req->rowCount() > 0)
 		{
-			
-			$_SESSION[login_success] = "You are looged on " .$_POST['username'];
+
+			$_SESSION[login_success] = "You are logged on " . $_POST['username'];
 			$_SESSION[LOGGED_ON] =	$_POST['username'];
 			try
 			{
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				$req->execute(array(
 					':username' => $_SESSION['LOGGED_ON']
 				));
-				$id = $req->fetch(PDO::FETCH_COLUMN, 0);      
+				$id = $req->fetch(PDO::FETCH_COLUMN, 0);
 			}
 			catch(PDOException $e)
 			{

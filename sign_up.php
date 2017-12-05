@@ -46,13 +46,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     {
                                         $conflink = md5( rand(0,1000) );
                                         $password = hash("sha512", $_POST[password]);
+										$yes = "yes";
                                         $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                                        $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink) VALUES (:username, :password, :email, :conflink)');
+                                        $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink, emailcomment) VALUES (:username, :password, :email, :conflink, :emailcomment)');
                                         $req->execute(array(
                                             ':username' => $_POST['username'],
                                             ':password' => $password,
                                             ':email' => $email,
-                                            ':conflink' => $conflink));
+                                            ':conflink' => $conflink,
+											':emailcomment' => $yes));
                                     }
                                     catch(PDOException $e)
                                     {
@@ -61,19 +63,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     $to       =  $email;
                                     $subject  = 'Signup | Verification';
                                     $message  = '
-            
+
                                     Thanks for signing up!
                                     Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-            
+
                                     ------------------------
                                     Username: '.$username.'
                                     ------------------------
-            
+
                                     Please click this link to activate your account:
                                     http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
-            
+
                                     ';
-            
+
                                     $headers = 'From:noreply@camagru.com' . "\r\n";
                                     mail($to, $subject, $message, $headers);
                                     header( "refresh:0;url=account_created.php" );

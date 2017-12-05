@@ -270,7 +270,8 @@ input[type=text], input[type=password], input[type=email] {
 
 .uplod
 {
-	position : absolute
+	position : absolute;
+	bottom: 4vw;
 }
 
 .del
@@ -280,6 +281,15 @@ input[type=text], input[type=password], input[type=email] {
 	width: 14vw;
 	display: inline-block;
 }
+
+#container
+{
+	margin: 0 0 1vw 1vw;
+	height: 13vw;
+	width: 14vw;
+	display: inline-block;
+}
+
 
 .likencomment
 {
@@ -335,7 +345,7 @@ input[type=text], input[type=password], input[type=email] {
 .galleryview
 {
 	display: inline-block;
-	overflow: scroll;
+	/*overflow: scroll;*/
 	height: 85%;
 }
 
@@ -351,21 +361,37 @@ input[type=text], input[type=password], input[type=email] {
 	position: relative;
 }
 
-
+/*
 body{
     background:#222;
     color:#666;
-}
+}*/
+
 #header{
-    font-family:Arial, Helvetica, sans-serif;
+    /*font-family:Arial, Helvetica, sans-serif;
     font-size:24px;
     font-weight:bold;
     text-align:left;
     text-indent:35px;
     margin: 0 auto;
     width:800px;
+    margin-bottom:10px;*/
+	display: inline-block;
+	/*overflow: auto;*/
+	height: 85%;
+
+}
+
+#headerusr{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10vw;
+    font-weight:bold;
+    text-align:center;
+    margin: 0 auto;
+    width:800px;
     margin-bottom:10px;
 }
+
 hr{
     margin: 20px;
     border:none;
@@ -381,4 +407,10 @@ p{
 }
 a{
     color:#444;
+}
+*/
+.settings
+{
+	margin : 0 auto;
+	margin-left: 3vw;
 }
