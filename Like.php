@@ -2,9 +2,9 @@
 session_start();
 $_SESSION["message"] = '';
 
-    if ($_SESSION[LOGGED_ON])
+    if ($_SESSION['LOGGED_ON'])
     {
-        $id = $_SESSION[ID];
+        $id = $_SESSION['ID'];
         $picname = $_GET['pic'];
         try{
             $conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");

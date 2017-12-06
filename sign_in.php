@@ -1,14 +1,15 @@
 <?php
 session_start();
-$_SESSION[message] = '';
-$_SESSION[login_success] = '';
-$_SESSION[login_err] = '';
-$_SESSION[ID] = '';
+$_SESSION['message'] = '';
+$_SESSION['login_success'] = '';
+$_SESSION['login_err'] = '';
+$_SESSION['ID'] = '';
+$_SESSION['LOGGED_ON'] = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
 	{
-		$password = hash("sha512", $_POST[password]);
+		$password = hash("sha512", $_POST['password']);
 		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
 		$req->execute(array(
@@ -18,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		if ($req->rowCount() > 0)
 		{
 
-			$_SESSION[login_success] = "You are logged on " . $_POST['username'];
-			$_SESSION[LOGGED_ON] =	$_POST['username'];
+			$_SESSION['login_success'] = "You are logged on " . $_POST['username'];
+			$_SESSION['LOGGED_ON'] =	$_POST['username'];
 			try
 			{
 				$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
@@ -33,15 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			catch(PDOException $e)
 			{
 				echo "Couldn't write in Database: " . $e->getMessage();
-				$_SESSION[login_success] = '';
-				$_SESSION[LOGGED_ON] =	NULL;
+				$_SESSION['login_success'] = '';
+				$_SESSION['LOGGED_ON'] =	NULL;
 			}
-			$_SESSION[ID] = $id;
+			$_SESSION['ID'] = $id;
 			header( "refresh:1;url=index.php" );
 		}
 		else
 		{
-			$_SESSION[login_err] = "Username or password incorrect";
+			$_SESSION['login_err'] = "Username or password incorrect";
 		}
 
 	}
@@ -62,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
  			<?php
- 			if (isset($_SESSION[LOGGED_ON]))
+ 			if (isset($_SESSION['LOGGED_ON']))
  			{
 				echo '<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
 				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
@@ -79,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<div class="main">
 		<form class="modal-content" action="sign_in.php" method="post">
             <div style = "padding:14%">
-                <div class="log_error"><?= $_SESSION[login_err] ?></div>
-				<div class="log_succes"><?= $_SESSION[login_success] ?></div>
+                <div class="log_error"><?= $_SESSION['login_err'] ?></div>
+				<div class="log_succes"><?= $_SESSION['login_success'] ?></div>
                 <label><b>Username</b></label>
                 <input type="text" placeholder="Enter user name" name="username" required>
 

@@ -1,8 +1,8 @@
 <?php
 session_start();
-$_SESSION[message] = '';
-$_SESSION[login_err] = '';
-$_SESSION[login_success] = '';
+$_SESSION['message'] = '';
+$_SESSION['login_err'] = '';
+$_SESSION['login_success'] = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
@@ -57,18 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 ';
                 $headers = 'From:noreply@camagru.com' . "\r\n";
                 mail($to, $subject, $message, $headers);
-                $_SESSION[login_success] = "Reset Email has been sent";
+                $_SESSION['login_success'] = "Reset Email has been sent";
                 header( "refresh:3;url=index.php" );
             }
             else
             {
-                $_SESSION[login_err] = "Your account is not activated yet, please check your Inbox or Spam";
+                $_SESSION['login_err'] = "Your account is not activated yet, please check your Inbox or Spam";
             }
 
         }
 		else
 		{
-			$_SESSION[login_err] = "Email doesn't exist";
+			$_SESSION['login_err'] = "Email doesn't exist";
 		}
 	}
 	catch (PDOexception $e)
@@ -87,9 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
  			<?php
- 			if (isset($_SESSION[LOGGED_ON]))
+ 			if (isset($_SESSION['LOGGED_ON']))
  			{
- 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
+ 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION['LOGGED_ON'] ."</button></a>";
  				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
  			}
  			else
@@ -103,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<div class="main">
 		<form class="modal-content" action="resetpsw.php" method="post">
             <div style = "padding:14%">
-                <div class="log_error"><?= $_SESSION[login_err] ?></div>
-				<div class="log_succes"><?= $_SESSION[login_success] ?></div>
+                <div class="log_error"><?= $_SESSION['login_err'] ?></div>
+				<div class="log_succes"><?= $_SESSION['login_success'] ?></div>
                 <label><b>Email</b></label>
                 <input type="text" placeholder="Enter user name" name="email" required>
                 <div class="clearfix" style="text-align: center;">

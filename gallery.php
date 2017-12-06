@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION[message] = '';
+$_SESSION['message'] = '';
 ?>
 <html>
 	<head>
@@ -12,7 +12,7 @@ $_SESSION[message] = '';
 			<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
  			<?php
- 			if (isset($_SESSION[LOGGED_ON]))
+ 			if (isset($_SESSION['LOGGED_ON']))
  			{
 				echo '<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
 				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
@@ -30,8 +30,8 @@ $_SESSION[message] = '';
 		<div class="main">
 		<?php
 
-		if (isset($_GET[p]))
-			$page = $_GET[p];
+		if (isset($_GET['p']))
+			$page = $_GET['p'];
 		else
 			$page = 1;
 
@@ -68,12 +68,12 @@ $_SESSION[message] = '';
 			foreach ($result as $value)
 			{
 				echo "<div id='container'>
-				<img class='gallery' src='./pics/" . $value[url] . "'/>";
-				if (isset($_SESSION[LOGGED_ON]))
+				<img class='gallery' src='./pics/" . $value['url'] . "'/>";
+				if (isset($_SESSION['LOGGED_ON']))
 				{
 					echo "<div class='likebutton'>
-							<a href='like.php?pic=" . $value[url] . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
-							<a href='comment.php?pic=" . $value[url] . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
+							<a href='like.php?pic=" . $value['url'] . "'> <img src='./ressources/icons/like.png' style='width:4vw;height=4vw;'/></a>
+							<a href='comment.php?pic=" . $value['url'] . "'><img src='./ressources/icons/comment.png' style='width:4vw;height=4vw;'/></a>
 							</div>";
 
 					echo "<div class='likencomment'>";
@@ -83,7 +83,7 @@ $_SESSION[message] = '';
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						$req = $conn->prepare("SELECT LikeID FROM likes WHERE photoID = :photoID");
 						$req->execute(array(
-							':photoID' => $value[PhotoID]
+							':photoID' => $value['PhotoID']
 						));
 					}
 					catch(PDOException $e)

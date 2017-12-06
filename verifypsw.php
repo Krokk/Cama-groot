@@ -1,13 +1,13 @@
 <?php
     session_start();
-    $_SESSION[message] = '';
-    $_SESSION[login_err] = '';
-    $_SESSION[login_success] = '';
+    $_SESSION['message'] = '';
+    $_SESSION['login_err'] = '';
+    $_SESSION['login_success'] = '';
     $resetok = 0;
-	if (isset($_GET[email]) && isset($_GET[conflink]))
+	if (isset($_GET['email']) && isset($_GET['conflink']))
 	{
-		$email = $_GET[email];
-		$conflink = $_GET[conflink];
+		$email = $_GET['email'];
+		$conflink = $_GET['conflink'];
 		try
 		{
 			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
@@ -27,13 +27,13 @@
         }
         else
         {
-            $_SESSION[message] = "Seems something went wrong please contact the webmaster & include this information: " .$conflink .$email;
+            $_SESSION['message'] = "Seems something went wrong please contact the webmaster & include this information: " .$conflink .$email;
         }
     }
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        $email = $_GET[email];
-		$conflink = $_GET[conflink];
+        $email = $_GET['email'];
+		$conflink = $_GET['conflink'];
         if ($_POST['password'] == $_POST['psw-repeat'])
         {
             try
@@ -55,7 +55,7 @@
         }
         else
         {
-            $_SESSION[message] = "Password doesn't match";
+            $_SESSION['message'] = "Password doesn't match";
         }
     }
     
@@ -73,9 +73,9 @@
  			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
  			<div class="box1">
  			<?php
- 			if (isset($_SESSION[LOGGED_ON]))
+ 			if (isset($_SESSION['LOGGED_ON']))
  			{
- 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
+ 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION['LOGGED_ON'] ."</button></a>";
  				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
  			}
  			else

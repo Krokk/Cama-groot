@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	if ($_SESSION[LOGGED_ON])
+	if ($_SESSION['LOGGED_ON'])
 	{
 		$pic = $_POST[pic];
 		try{
@@ -38,7 +38,7 @@
 			$req = $conn->prepare('INSERT INTO comments (photoID, author, timet, text) VALUES (:photoID, :author , NOW(), :text)');
 			$req->execute(array(
 				':photoID' => $idphoto[PhotoID],
-				':author' => $_SESSION[LOGGED_ON],
+				':author' => $_SESSION['LOGGED_ON'],
 				':text' => $_POST[comment]
 			));
 		}
@@ -53,7 +53,7 @@
 		Your picture has been commented,
 
 		------------------------
-		'.$_SESSION[LOGGED_ON].' : '.$_POST[comment].'
+		'.$_SESSION['LOGGED_ON'].' : '.$_POST[comment].'
 		------------------------
 
 		Click on this link to see more:

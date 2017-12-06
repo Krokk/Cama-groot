@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	if (isset($_GET[email]) && isset($_GET[conflink]))
+	if (isset($_GET['email']) && isset($_GET['conflink']))
 	{
-		$email = $_GET[email];
-		$conflink = $_GET[conflink];
+		$email = $_GET['email'];
+		$conflink = $_GET['conflink'];
 		try
 		{
 			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
@@ -29,7 +29,7 @@
 				$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 				$result = $con->query("SELECT username FROM users WHERE email = " . "'" . $email . "'");
 				$donnees = $result->fetch();
-				$_SESSION[LOGGED_ON] =	$donnees['username'];
+				$_SESSION['LOGGED_ON'] =	$donnees['username'];
 			}
 			catch(PDOexception $e)
 			{
@@ -55,9 +55,9 @@
  			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
  			<div class="box1">
  			<?php
- 			if (isset($_SESSION[LOGGED_ON]))
+ 			if (isset($_SESSION['LOGGED_ON']))
  			{
- 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION[LOGGED_ON] ."</button></a>";
+ 				echo '<a href="profile.php"><button class="signed" style="padding-left: 0px;type="button" name="profile">' . $_SESSION['LOGGED_ON'] ."</button></a>";
  				echo '<a href="logout.php"><button class="button" type="button" name="Logout">Log out</button></a>';
  			}
  			else

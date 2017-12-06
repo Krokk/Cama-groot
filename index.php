@@ -11,7 +11,7 @@
 		<div class="header">
 			<a href="index.php" style=""><button class="title" name="button">CAMAGRU</button><a/>
 			<?php
-			if (isset($_SESSION[LOGGED_ON]))
+			if (isset($_SESSION['LOGGED_ON']))
 			{
 				echo '<a href="user.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
 				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
@@ -26,7 +26,7 @@
 			?>
 		</div>
 		<?php
-		if (isset($_SESSION[LOGGED_ON]))
+		if (isset($_SESSION['LOGGED_ON']))
 		{
 			$pics = scandir("./pics/");
 			$pics = array_slice($pics, 2);
@@ -60,7 +60,7 @@
 					foreach ($pics as $value)
 					{
 						$value = explode(' ', $value);
-						if ($_SESSION[LOGGED_ON] == $value[0])
+						if ($_SESSION['LOGGED_ON'] == $value[0])
 						{
 							$value = implode(' ', $value);
 							echo "<div class='del'>
@@ -80,7 +80,7 @@
 </html>
 
 <?php
-if ($_SESSION[LOGGED_ON])
+if (isset($_SESSION['LOGGED_ON']))
 {
 ?>
 <script>

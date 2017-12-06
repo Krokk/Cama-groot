@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$pic = explode(" ", $_GET[pic]);
+$pic = explode(" ", $_GET['pic']);
 $path = "./pics/";
-if ($_SESSION[LOGGED_ON] === $pic[0])
+if ($_SESSION['LOGGED_ON'] === $pic[0])
 {
 	$pic = implode(" ", $pic);
 	unlink("$path" . "$pic");

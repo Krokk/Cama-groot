@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	if (isset($_SESSION[LOGGED_ON]))
+	if (isset($_SESSION['LOGGED_ON']))
 	{
 ?>
 
@@ -17,7 +17,7 @@
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
  			<?php
- 			if (isset($_SESSION[LOGGED_ON]))
+ 			if (isset($_SESSION['LOGGED_ON']))
  			{
 				echo '<a href="user.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
 				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
@@ -31,7 +31,7 @@
  			}
  			?>
 		</div>
-		<div id="headerusr" style="margin-top:2vw;">Hello <?php echo $_SESSION[LOGGED_ON]; ?></div>
+		<div id="headerusr" style="margin-top:2vw;">Hello <?php echo $_SESSION['LOGGED_ON']; ?></div>
 		<div class="settings">
 			<form class="" action="modifusername.php" method="post">
 				<input type="text" name="newname" value="" placeholder="New username" style="width:150px;height:1vw;border-radius:0.5vw;">

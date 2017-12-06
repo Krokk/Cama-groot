@@ -1,8 +1,8 @@
 <?php
 	session_start();
-	if (!isset($_SESSION[LOGGED_ON]))
+	if (!isset($_SESSION['LOGGED_ON']))
 		header('location:index.php');
-	$pic = $_GET[pic];
+	$pic = $_GET['pic'];
 ?>
 <html>
 	<head>
@@ -31,7 +31,7 @@
 			</div>
 			<div id="droite">
 			<?php
-			if ($_SESSION[LOGGED_ON])
+			if ($_SESSION['LOGGED_ON'])
 			{
 				try{
 					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
@@ -61,7 +61,7 @@
 				}
 				foreach ($comment as $value)
 				{
-					echo htmlspecialchars($value[author] . ": " . $value[text]);
+					echo htmlspecialchars($value['author'] . ": " . $value['text']);
 					echo "<br>";
 				}
 			}

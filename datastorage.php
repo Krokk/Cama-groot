@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	if ($_SESSION[LOGGED_ON])
+	if ($_SESSION['LOGGED_ON'])
 	{
 		if (!file_exists("./pics"))
 			mkdir("./pics");
@@ -12,9 +12,9 @@
 		$img = str_replace(' ', '+', $img);
 		$filedata = base64_decode($img);
 		$filepath = "./pics/";
-		$filesql = $_SESSION[LOGGED_ON] . " " . time() . '.png';
-		$filename = $filepath . $_SESSION[LOGGED_ON] . " " . time() . '.png';
-		file_put_contents($filename);
+		$filesql = $_SESSION['LOGGED_ON'] . " " . time() . '.png';
+		$filename = $filepath . $_SESSION['LOGGED_ON'] . " " . time() . '.png';
+		file_put_contents($filename, $filedata);
 
 		if (file_exists($filter))
 		{
