@@ -17,7 +17,7 @@ if(is_dir($dir))
 
 	for($i = $n; $i<$n+9; $i++)
 	{
-		$response = $response.$files[$i].';';
+		$response = $response . $files[$i % count($files)] . ';';
 	}
 
 	echo $response;

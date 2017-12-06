@@ -68,7 +68,7 @@ body
 	background-color: rgb(78, 99, 110);
 	border: none;
 	margin: auto;;
-	margin-left: -47vw;
+	margin-left: -44vw;
 	height: 100%;
 	width: 100%;
 	font-size: 4vw;
@@ -262,8 +262,8 @@ input[type=text], input[type=password], input[type=email] {
 {
 	border-radius: 1vw;
 	padding: 0.2vw;
-	width: 13vw;
-	height: 12vw;
+	width: 11vw;
+	height: 10vw;
 	transition: .3s ease;
 	z-index: 1;
 }
@@ -277,8 +277,8 @@ input[type=text], input[type=password], input[type=email] {
 .del
 {
 	margin: 0 0 1vw 1vw;
-	height: 13vw;
-	width: 14vw;
+	height: 11vw;
+	width: 12vw;
 	display: inline-block;
 }
 
@@ -303,10 +303,10 @@ input[type=text], input[type=password], input[type=email] {
 .delbutton
 {
 	position: relative;
-	top : -9vw;
+	top : -7.2vw;
 	opacity: 0;
 	width: 5%;
-	margin-left: 5.2vw;
+	margin-left: 3.8vw;
 	transition: .3s ease;
 	z-index: 2;
 }
@@ -319,10 +319,10 @@ input[type=text], input[type=password], input[type=email] {
 .likebutton
 {
 	position: relative;
-	top : -11vw;
+	top : -9.2vw;
 	opacity: 0;
 	width: 5%;
-	margin-left: 5.2vw;
+	margin-left: 3.8vw;
 	transition: .3s ease;
 	z-index: 2;
 }
@@ -345,7 +345,7 @@ input[type=text], input[type=password], input[type=email] {
 .galleryview
 {
 	display: inline-block;
-	/*overflow: scroll;*/
+	overflow: scroll;
 	height: 85%;
 }
 
@@ -368,17 +368,17 @@ body{
 }*/
 
 #header{
-    /*font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
     font-size:24px;
     font-weight:bold;
     text-align:left;
     text-indent:35px;
     margin: 0 auto;
     width:800px;
-    margin-bottom:10px;*/
-	display: inline-block;
-	/*overflow: auto;*/
-	height: 85%;
+    margin-bottom:10px;
+	/*display: inline-block;*/
+	/*overflow: auto;
+	height: 85%;*/
 
 }
 

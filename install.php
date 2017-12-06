@@ -1,4 +1,7 @@
 <?php
+
+	if (!file_exists("./pics"))
+		mkdir("./pics");
 	try
 	{
 		$conn = new PDO("mysql:host=localhost", "root", "root");
