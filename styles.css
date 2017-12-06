@@ -276,7 +276,7 @@ input[type=text], input[type=password], input[type=email] {
 
 .del
 {
-	margin: 0 0 1vw 1vw;
+	margin: 0 0 0vw 0vw;
 	height: 11vw;
 	width: 12vw;
 	display: inline-block;
@@ -290,7 +290,6 @@ input[type=text], input[type=password], input[type=email] {
 	display: inline-block;
 }
 
-
 .likencomment
 {
 	width: 14vw;
@@ -300,6 +299,7 @@ input[type=text], input[type=password], input[type=email] {
 	margin: 0 0 0 1vw;
 	z-index: 2;
 }
+
 .delbutton
 {
 	position: relative;
@@ -345,7 +345,6 @@ input[type=text], input[type=password], input[type=email] {
 .galleryview
 {
 	display: inline-block;
-	overflow: scroll;
 	height: 85%;
 }
 
@@ -361,54 +360,6 @@ input[type=text], input[type=password], input[type=email] {
 	position: relative;
 }
 
-/*
-body{
-    background:#222;
-    color:#666;
-}*/
-
-#header{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:24px;
-    font-weight:bold;
-    text-align:left;
-    text-indent:35px;
-    margin: 0 auto;
-    width:800px;
-    margin-bottom:10px;
-	/*display: inline-block;*/
-	/*overflow: auto;
-	height: 85%;*/
-
-}
-
-#headerusr{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:10vw;
-    font-weight:bold;
-    text-align:center;
-    margin: 0 auto;
-    width:800px;
-    margin-bottom:10px;
-}
-
-hr{
-    margin: 20px;
-    border:none;
-    border-top: 1px solid #111;
-    border-bottom: 1px solid #333;
-}
-p{
-    color:#444;
-    text-align:left;
-    font-size:10px;
-    margin-left: 20px;
-    margin-bottom: -10px;
-}
-a{
-    color:#444;
-}
-*/
 .settings
 {
 	margin : 0 auto;
