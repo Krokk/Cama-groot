@@ -13,7 +13,8 @@
 	<body>
 		<div class="header">
 			<a href="index.php" style=""><button class="title" name="button">CAMAGRU</button><a/>
-			<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>
+				<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>
+				<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>
 			<a href="logout.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logout.png" style="width:4.5vw;height:4vw;"</img></button></a>
 		</div>
 		<div id="global">
