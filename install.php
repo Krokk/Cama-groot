@@ -27,7 +27,7 @@
 			`password` VARCHAR(255) NOT NULL,
 			`avatar` VARCHAR(255),
 			`resetpsw` INT NOT NULL DEFAULT 0,
-			`emailcomment` VARCHAR(255),
+			`emailcomment` INT NOT NULL DEFAULT 0,
 			PRIMARY KEY (`id`));
 		  ";
 		$conn->exec($qry);

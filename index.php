@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 ?>
 <html>
 	<head>
@@ -28,11 +29,22 @@
 		<?php
 		if (isset($_SESSION['LOGGED_ON']))
 		{
-			$pics = scandir("./pics/");
-			$pics = array_slice($pics, 2);
-			$pics = array_reverse($pics);
-			echo '
+			try
+			{
+				$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$req = $conn->prepare('SELECT url FROM Photos WHERE username = :username ORDER BY timet DESC');
+				$req->execute(array(
+				':username' => $_SESSION['LOGGED_ON']
+				));
+				$result = $req->fetchAll();
+			}
+			catch (Exception $e)
+			{
+				echo "Couldn't load photos : " . $e->getMessage();
+			}
 
+			echo '
 			<div id="global">
 				<div id="gauche">
 					<div class="filters">
@@ -57,18 +69,13 @@
 					</form>
 				</div>
 				<div id="droite">';
-					foreach ($pics as $value)
+					foreach ($result as $value)
 					{
-						$value = explode(' ', $value);
-						if ($_SESSION['LOGGED_ON'] == $value[0])
-						{
-							$value = implode(' ', $value);
 							echo "<div class='del'>
-									<img class='gallery' src='./pics/" . $value . "'/>
-									<div class='delbutton'><a href='delpicture.php?pic=" . $value . "'><img src='./ressources/icons/delwhite.png' style='width:4vw;height=4vw;'/></a>
+									<img class='gallery' src='./pics/" . $value['url'] . "'/>
+									<div class='delbutton'><a href='delpicture.php?pic=" . $value['url'] . "'><img src='./ressources/icons/delwhite.png' style='width:4vw;height=4vw;'/></a>
 									</div>
 								</div>";
-						}
 					}
 				 echo '</div>
 			</div>';
@@ -86,21 +93,21 @@ if (isset($_SESSION['LOGGED_ON']))
 <script>
 (function() {
 		var streaming = false,
-    video        = document.querySelector('#video'),
-    cover        = document.querySelector('#cover'),
-    canvas       = document.querySelector('#canvas'),
-		context	   = canvas.getContext('2d'),
-    photo        = document.querySelector('#photo'),
-		startbutton  = document.querySelector('#startbutton'),
-	  filter	= document.querySelector('#blanka'),
+		video = document.querySelector('#video'),
+		cover = document.querySelector('#cover'),
+		canvas = document.querySelector('#canvas'),
+		context = canvas.getContext('2d'),
+		photo = document.querySelector('#photo'),
+		startbutton = document.querySelector('#startbutton'),
+		filter	= document.querySelector('#blanka'),
 
 		width = (window.innerWidth / 5 ) ;
 		height = window.innerHeight;
 
-  	navigator.getMedia = ( navigator.getUserMedia ||
-                         navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia ||
-                         navigator.msGetUserMedia);
+		navigator.getMedia = ( navigator.getUserMedia ||
+								navigator.webkitGetUserMedia ||
+								navigator.mozGetUserMedia ||
+								navigator.msGetUserMedia);
 
   	navigator.getMedia(
     {

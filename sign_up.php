@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     {
                                         $conflink = md5( rand(0,1000) );
                                         $password = hash("sha512", $_POST[password]);
-										$yes = "yes";
                                         $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
                                         $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink, emailcomment) VALUES (:username, :password, :email, :conflink, :emailcomment)');
                                         $req->execute(array(
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                             ':password' => $password,
                                             ':email' => $email,
                                             ':conflink' => $conflink,
-											':emailcomment' => $yes));
+											':emailcomment' => 1));
                                     }
                                     catch(PDOException $e)
                                     {

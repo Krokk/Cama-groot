@@ -1,6 +1,10 @@
 <?php
 	session_start();
 
+	if(!isset($_SESSION['LOGGED_ON']))
+		header('location:index.php');
+
+
 	if (isset($_SESSION['LOGGED_ON']))
 	{
 ?>
@@ -38,12 +42,17 @@
 				<input type="submit" name="submit" value="change username" style="height:2vw;width:120px">
 			</form>
 			<form class="" action="modifemail.php" method="post">
-				<input type="text" name="newname" value="" placeholder="New email" style="width:150px;height:1vw;border-radius:0.5vw;">
+				<input type="text" name="newmail" value="" placeholder="New email" style="width:150px;height:1vw;border-radius:0.5vw;">
 				<input type="submit" name="submit" value="change email" style="height:2vw;width:120px">
 			</form>
 			<form class="" action="index.html" method="post">
 				<br>
-				<button type="button" style="width:150px:height:20px;" name="I don't want to receive emails when my photos are commented anymore"></button>
+					<?php
+						if ($_SESSION['mailcomm'] == 1)
+							echo "<a href='commoff.php'><button type='button' name='commentson'>I don't want to receive emails when my photos are commented anymore</button></a>";
+						else if ($_SESSION['mailcomm'] == 0)
+							echo "<a href='common.php'><button type='button' name='commentsoff'>I want to receive emails when my photos are commented </button></a>";
+					?>
 			</form>
 		</div>
 		<div class="footer">

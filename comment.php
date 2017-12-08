@@ -1,7 +1,9 @@
 <?php
 	session_start();
+
 	if (!isset($_SESSION['LOGGED_ON']))
 		header('location:index.php');
+
 	$pic = $_GET['pic'];
 ?>
 <html>
