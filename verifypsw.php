@@ -11,6 +11,7 @@
 		try
 		{
 			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$request = $con->prepare("SELECT email, conflink FROM users WHERE email = :email AND conflink = :conflink AND resetpsw = '1'");
 			$request->execute(array(
 				':email' => $email,
@@ -40,7 +41,8 @@
             {
                 $password = hash("sha512", $_POST[password]);
                 $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                $update = $con->prepare("UPDATE users SET resetpsw = '0', conflink = NULL, password = :password WHERE email = :email AND conflink = :conflink AND activated = '1' AND resetpsw = '1'");
+				$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$update = $con->prepare("UPDATE users SET resetpsw = '0', conflink = NULL, password = :password WHERE email = :email AND conflink = :conflink AND activated = '1' AND resetpsw = '1'");
 				$update->execute(array(
 					':email' => $email,
                     ':conflink' => $conflink,
@@ -51,14 +53,14 @@
             {
                 echo "Couldn't write in database: " . $e->getMessage();
             }
-            
+
         }
         else
         {
             $_SESSION['message'] = "Password doesn't match";
         }
     }
-    
+
 
  ?>
  <html>
@@ -94,13 +96,13 @@
             echo '<label><b> New password</b></label>
             <form class="modal-content" action="verifypsw.php?email='.$email.'&conflink='.$conflink.'" method="post">
                <div class="container">
-                   
+
                     <input type="password" placeholder="Enter Password" name="password" required>
                    <label><b>Repeat new password</b></label>
                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
                    <button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Confirm</button>
            </div>
-           
+
            </form>';
          }
          ?>

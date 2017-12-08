@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
         $email = $_POST["email"];
 		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$req = $con->prepare("SELECT username FROM users WHERE email = :email");
         $req->execute(array(':email' => $email));
 		if ($req->rowCount() > 0)

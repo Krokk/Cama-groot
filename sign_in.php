@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		$password = hash("sha512", $_POST['password']);
 		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
 		$req->execute(array(
 			':username' => $_POST['username'],

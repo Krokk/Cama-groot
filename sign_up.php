@@ -17,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         {
                             $email = $_POST[email];
                             $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                            $request = $con->prepare("SELECT email FROM users WHERE email = :email;");
+							$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$request = $con->prepare("SELECT email FROM users WHERE email = :email;");
                             $request->bindParam(':email', $email);
                             $request->execute();
                         }
@@ -32,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                 try
                                 {
                                     $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                                    $request = $con->prepare("SELECT username FROM users WHERE username = :name;");
+									$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+									$request = $con->prepare("SELECT username FROM users WHERE username = :name;");
                                     $request->bindParam(':name', $username);
                                     $request->execute();
                                 }
@@ -47,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                         $conflink = md5( rand(0,1000) );
                                         $password = hash("sha512", $_POST[password]);
                                         $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-                                        $req = $bdd->prepare('INSERT INTO users (username, password, email, conflink, emailcomment) VALUES (:username, :password, :email, :conflink, :emailcomment)');
+										$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+										$req = $bdd->prepare('INSERT INTO users (username, password, email, conflink, emailcomment) VALUES (:username, :password, :email, :conflink, :emailcomment)');
                                         $req->execute(array(
                                             ':username' => $_POST['username'],
                                             ':password' => $password,

@@ -5,6 +5,7 @@
 	try
 	{
 		$conn = new PDO("mysql:host=localhost", "root", "root");
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$req = "CREATE DATABASE db_camagru";
 		$req = $conn->prepare($req);
 		$req->execute();

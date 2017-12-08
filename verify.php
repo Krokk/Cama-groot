@@ -7,6 +7,7 @@
 		try
 		{
 			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$request = $con->prepare("SELECT email, conflink, activated FROM users WHERE email = :email AND conflink = :conflink AND activated = '0'");
 			$request->execute(array(
 				':email' => $email,
@@ -27,6 +28,7 @@
 					':conflink' => $conflink
 				));
 				$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$result = $con->query("SELECT username FROM users WHERE email = " . "'" . $email . "'");
 				$donnees = $result->fetch();
 				$_SESSION['LOGGED_ON'] =	$donnees['username'];
