@@ -12,8 +12,8 @@
 		$img = str_replace(' ', '+', $img);
 		$filedata = base64_decode($img);
 		$filepath = "./pics/";
-		$filesql = $_SESSION['LOGGED_ON'] . " " . time() . '.png';
-		$filename = $filepath . $_SESSION['LOGGED_ON'] . " " . time() . '.png';
+		$filesql = $_SESSION['ID'] . " " . time() . '.png';
+		$filename = $filepath . $_SESSION['ID'] . " " . time() . '.png';
 		file_put_contents($filename, $filedata);
 
 		if (file_exists($filter))
@@ -28,10 +28,11 @@
 		{
 			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$req = $conn->prepare('INSERT INTO Photos (username, timet, url) VALUES (:username, NOW() , :url)');
+			$req = $conn->prepare('INSERT INTO Photos (username, timet, url, UserID) VALUES (:username, NOW() , :url, :userID)');
 			$req->execute(array(
 				':username' => $_SESSION['LOGGED_ON'],
-				':url' => $filesql
+				':url' => $filesql,
+				':userID' => $_SESSION['ID']
 			));
 		}
 		catch(PDOException $e)

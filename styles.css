@@ -247,8 +247,8 @@ input[type=text], input[type=password], input[type=email] {
 
 .filters
 {
-       float: right;
-	   margin: 1vw 0 0 0;
+		position: absolute;
+	   margin: 2vw 0 0 30vw;
 
 }
 
@@ -271,6 +271,7 @@ input[type=text], input[type=password], input[type=email] {
 .uplod
 {
 	position : absolute;
+	width: 125vw;
 	top: 6.1vw;
 	left: 2vw;
 }
@@ -367,6 +368,6 @@ input[type=text], input[type=password], input[type=email] {
 	margin-left: 3vw;
 }
 
-#headerusr
+/*#headerusr
 {
-}
+}*/

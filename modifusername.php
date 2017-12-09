@@ -18,7 +18,7 @@
 	{
 		echo "Couldn't update : " . $e->getMessage();
 	}
-	
+
 	try
 	{
 		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
