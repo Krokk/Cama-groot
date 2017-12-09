@@ -5,7 +5,7 @@
 	{
 		if (!file_exists("./pics"))
 			mkdir("./pics");
-		$filter = "./filters/" . $_POST['filter'] . ".png";
+		$filter = "./ressources/filters/" . $_POST['filter'] . ".png";
 		$img = $_POST['data'];
 
 		$img = str_replace('data:image/png;base64,', '', $img);

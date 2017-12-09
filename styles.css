@@ -271,7 +271,8 @@ input[type=text], input[type=password], input[type=email] {
 .uplod
 {
 	position : absolute;
-	bottom: 4vw;
+	top: 6.1vw;
+	left: 2vw;
 }
 
 .del

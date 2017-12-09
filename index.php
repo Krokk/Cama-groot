@@ -47,26 +47,26 @@
 			echo '
 			<div id="global">
 				<div id="gauche">
+				<form class="uplod" action="upload.php" method="post" enctype="multipart/form-data">
+				Select image to upload:
+				<input type="file" name="fileToUpload" id="fileToUpload" required>
+				<input type="submit" value="Upload Image" name="submit">
 					<div class="filters">
 						<input type="radio" name="filter" value="blanka" id="blanka" checked/>
-						<label><img src="./filters/blanka.png" alt="missing" class="filtersize" /></label>
+						<label><img src="./ressources/filters/blanka.png" alt="missing" class="filtersize" /></label>
 						<input type="radio" name="filter" value="gouki" id="gouki"/>
-						<label><img src="./filters/gouki.png" alt="missing" class="filtersize" /></label>
+						<label><img src="./ressources/filters/gouki.png" alt="missing" class="filtersize" /></label>
 						<br>
 						<input type="radio" name="filter" value="phoenix" id="phoenix"/>
-						<label><img src="./filters/phoenix.png" alt="missing" class="filtersize" /></label>
+						<label><img src="./ressources/filters/phoenix.png" alt="missing" class="filtersize" /></label>
 						<input type="radio" name="filter" value="marine" id="marine"/>
-						<label><img src="./filters/marine.png" alt="missing" class="filtersize" /></label>
+						<label><img src="./ressources/filters/marine.png" alt="missing" class="filtersize" /></label>
 					</div>
+					</form>
 					<video id="video"></video>
 					<button type="submit" class="cambutton" id="startbutton"><img src="./ressources/icons/photo-camera.png" style="width:4vw;height=4vw;"/></button>
 					<img id="photo" />
 					<canvas id="canvas" style="display:none;"></canvas>
-					<form class="uplod" action="upload.php" method="post" enctype="multipart/form-data">
-					Select image to upload:
-					<input type="file" name="fileToUpload" id="fileToUpload" required>
-					<input type="submit" value="Upload Image" name="submit">
-					</form>
 				</div>
 				<div id="droite">';
 					foreach ($result as $value)
