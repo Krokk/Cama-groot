@@ -38,21 +38,6 @@
 	{
 		echo "Couldn't create table: " . $e->getMessage();
 	}
-	// try
-	// {
-	// 	$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
-	// 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	// 	$qry = "CREATE TABLE `db_camagru`.`following` (
-	// 		`userID` INT NOT NULL,
-	// 		`followinguserID` INT NOT NULL,
-	// 		PRIMARY KEY (`userID`));
-	// 		";
-	// 	$conn->exec($qry);
-	// }
-	// catch(PDOException $e)
-	// {
-	// 	echo "Couldn't create table: " . $e->getMessage();
-	// }
 	try
 	{
 		$conn = new PDO("mysql:host=localhost", $DB_USER, $DB_PASSWORD);
