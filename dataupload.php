@@ -8,8 +8,8 @@ if ($_SESSION['LOGGED_ON'])
 	$filter = "./ressources/filters/" . $_GET['filter'] . ".png";
 	$filedata = file_get_contents("./pics/" . $_GET['data']);
 	$filepath = "./pics/";
-	$filesql = $_SESSION['LOGGED_ON'] . " " . time() . '.png';
-	$filename = $filepath . $_SESSION['LOGGED_ON'] . " " . time() . '.png';
+	$filesql = $_SESSION['ID'] . " " . time() . '.png';
+	$filename = $filepath . $_SESSION['ID'] . " " . time() . '.png';
 	file_put_contents($filename, $filedata);
 
 	if (file_exists($filter))

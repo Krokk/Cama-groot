@@ -63,7 +63,7 @@
 		------------------------
 
 		Click on this link to see more:
-		http://localhost:8080/Camagru/comment.php?pic= '.$pic.'
+		http://localhost:8080/comment.php?pic= '.$pic.'
 
 		';
 

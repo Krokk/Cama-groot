@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     ------------------------
 
                                     Please click this link to activate your account:
-                                    http://localhost:8080/Camagru/verify.php?email='.$email.'&conflink='.$conflink.'
+                                    http://localhost:8080/verify.php?email='.$email.'&conflink='.$conflink.'
 
                                     ';
 

@@ -29,9 +29,10 @@
 				));
 				$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
 				$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$result = $con->query("SELECT username FROM users WHERE email = " . "'" . $email . "'");
+				$result = $con->query("SELECT username, userID FROM users WHERE email = " . "'" . $email . "'");
 				$donnees = $result->fetch();
-				$_SESSION['LOGGED_ON'] =	$donnees['username'];
+				$_SESSION['LOGGED_ON'] = $donnees['username'];
+				$_SESSION['ID'] = $donnees['userID'];
 			}
 			catch(PDOexception $e)
 			{
