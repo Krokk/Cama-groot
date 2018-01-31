@@ -50,7 +50,8 @@
 			header('location:user.php');
 		}
 		else {
-			header('location:user.php');
+			echo "Ce Login est deja utiliser.";
+			header('refresh:1;url=location:user.php');
 		}
 
 

@@ -47,6 +47,10 @@
 				<input type="text" name="newmail" value="" placeholder="New email" style="width:150px;height:1vw;border-radius:0.5vw;">
 				<input type="submit" name="submit" value="change email" style="height:2vw;width:120px">
 			</form>
+			<form class="" action="modifpasswd.php" method="post">
+				<input type="password" name="newpasswd" value="" placeholder="New password" style="width:150px;height:1vw;border-radius:0.5vw;">
+				<input type="submit" name="submit" value="change password" style="height:2vw;width:120px">
+			</form>
 			<form class="" action="index.html" method="post">
 				<br>
 					<?php

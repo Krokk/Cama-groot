@@ -28,13 +28,13 @@ if(isset($_POST["submit"])) {
 
 		if (file_exists($target_file))
 		{
-			header( "refresh:2;url=index.php" );
+			header( "refresh:1;url=index.php" );
     		echo "<div class='uploadmsg'>Sorry, file already exists. Redirecting</div>";
     		$uploadOk = 0;
 		}
 		if ($_FILES["fileToUpload"]["size"] > 50000000)
 		{
-			header( "refresh:2;url=index.php" );
+			header( "refresh:1;url=index.php" );
 			echo "<div class='uploadmsg'>Sorry, your file is too large. Redirecting</div>";
 	    	$uploadOk = 0;
 		}
@@ -42,13 +42,13 @@ if(isset($_POST["submit"])) {
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 		&& $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "JPEG" && $imageFileType != "GIF" && $imageFileType != "PNG")
 		{
-			header( "refresh:2;url=index.php" );
+			header( "refresh:1;url=index.php" );
 			echo "<div class='uploadmsg'>Sorry, only JPG, JPEG, PNG & GIF files are allowed. Redirecting</div>";
 	    	$uploadOk = 0;
 		}
 		if ($uploadOk == 0)
 		{
-			header( "refresh:2;url=index.php" );
+			header( "refresh:1;url=index.php" );
 			echo "<div class='uploadmsg'>Sorry, your file was not uploaded. Redirecting</div>";
 		}
 		else
@@ -60,13 +60,13 @@ if(isset($_POST["submit"])) {
 			}
 			else
 		 	{
-				header( "refresh:2;url=index.php" );
+				header( "refresh:1;url=index.php" );
 				echo "<div class='uploadmsg'>Sorry, there was an error uploading your file. Redirecting</div>";
 			}
 		}
 	}
 		else {
-			header("refresh:2;url=index.php");
+			header("refresh:1;url=index.php");
 			echo "Your File Isn't a valid type. redirecting.";
 			}
 		}

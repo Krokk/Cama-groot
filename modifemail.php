@@ -35,7 +35,7 @@
 		}
 		else
 		{
-			echo "marche po";
-			header('location:user.php');
+			echo "Cette addresse email est deja utiliser.";
+			header( "refresh:1;url=user.php" );
 		}
  ?>
