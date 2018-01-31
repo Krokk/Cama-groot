@@ -10,7 +10,6 @@
 		$req = "CREATE DATABASE db_camagru";
 		$req = $conn->prepare($req);
 		$req->execute();
-		// header("location:index.php");
 	}
 	catch(PDOException $e)
 	{
@@ -65,7 +64,7 @@
 		`photoID` INT NOT NULL,
 		`author` VARCHAR(255) NOT NULL,
 		`timet` DATETIME NOT NULL,
-		`text` VARCHAR(255) NOT NULL,
+		`text` TEXT NOT NULL,
 		PRIMARY KEY (`CommentID`));
 			";
 		$conn->exec($qry);

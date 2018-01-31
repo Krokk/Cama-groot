@@ -5,6 +5,7 @@ $_SESSION['message'] = '';
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
+		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
 		<meta charset="utf-8">
 		<title></title>
 	</head>
