@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         try
                         {
                             $email = $_POST['email'];
-                            $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                            $con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 							$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 							$request = $con->prepare("SELECT email FROM users WHERE email = :email;");
                             $request->bindParam(':email', $email);
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                             {
                                 try
                                 {
-                                    $con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                                    $con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 									$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 									$request = $con->prepare("SELECT username FROM users WHERE username = :name;");
                                     $request->bindParam(':name', $username);
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     {
                                         $conflink = md5( rand(0,1000) );
                                         $password = hash("sha512", $_POST['password']);
-                                        $bdd = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+                                        $bdd = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 										$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 										$req = $bdd->prepare('INSERT INTO users (username, password, email, conflink, emailcomment) VALUES (:username, :password, :email, :conflink, :emailcomment)');
                                         $req->execute(array(
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     ------------------------
 
                                     Please click this link to activate your account:
-                                    http://localhost:8080/verify.php?email='.$email.'&conflink='.$conflink.'
+                                    http://127.0.0.1:8080/verify.php?email='.$email.'&conflink='.$conflink.'
 
                                     ';
 
@@ -127,6 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
 		<title></title>
 	</head>
 	<body>

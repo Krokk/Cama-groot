@@ -5,7 +5,7 @@
 		header('location:index.php');
 	try
 	{
-		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$update = $conn->prepare("UPDATE users SET emailcomment = '0' WHERE username = :username");
 		$update->execute(array(

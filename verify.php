@@ -6,7 +6,7 @@
 		$conflink = $_GET['conflink'];
 		try
 		{
-			$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$request = $con->prepare("SELECT email, conflink, activated FROM users WHERE email = :email AND conflink = :conflink AND activated = '0'");
 			$request->execute(array(
@@ -27,12 +27,13 @@
 					':email' => $email,
 					':conflink' => $conflink
 				));
-				$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 				$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$result = $con->query("SELECT username, userID FROM users WHERE email = " . "'" . $email . "'");
+				$result = $con->query("SELECT username, id, emailcomment FROM users WHERE email = " . "'" . $email . "'");
 				$donnees = $result->fetch();
 				$_SESSION['LOGGED_ON'] = $donnees['username'];
-				$_SESSION['ID'] = $donnees['userID'];
+				$_SESSION['ID'] = $donnees['id'];
+				$_SESSION['mailcomm'] = $donnees['emailcomment'];
 			}
 			catch(PDOexception $e)
 			{
@@ -51,6 +52,7 @@
  		<link rel="stylesheet" href="styles.css">
 
  		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
  		<title></title>
  	</head>
  	<body>

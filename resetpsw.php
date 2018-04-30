@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	try
 	{
         $email = $_POST["email"];
-		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$req = $con->prepare("SELECT username FROM users WHERE email = :email");
         $req->execute(array(':email' => $email));
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 ------------------------
 
                 Please click this link to reset your account password:
-                http://localhost:8080/verifypsw.php?email='.$email.'&conflink='.$conflink.'
+                http://127.0.0.1:8080/verifypsw.php?email='.$email.'&conflink='.$conflink.'
 
                 ';
                 $headers = 'From:noreply@camagru.com' . "\r\n";
@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
 		<title></title>
 	</head>
 	<body>

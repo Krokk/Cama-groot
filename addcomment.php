@@ -8,7 +8,7 @@
 	{
 		$pic = $_POST['pic'];
 		try{
-			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$req = $conn->prepare("SELECT PhotoID, username FROM photos  where url = :url");
 			$req->execute(array(
@@ -22,7 +22,7 @@
 		}
 		try
 		{
-			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$req = $conn->prepare('SELECT email FROM users  where username = :username');
 			$req->execute(array(
@@ -38,7 +38,7 @@
 			header('location:index.php');
 		try
 		{
-			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$req = $conn->prepare('INSERT INTO comments (photoID, author, timet, text) VALUES (:photoID, :author , NOW(), :text)');
 			$req->execute(array(
@@ -63,7 +63,7 @@
 		------------------------
 
 		Click on this link to see more:
-		http://localhost:8080/comment.php?pic= '.$pic.'
+		http://localhost:3030/comment.php?pic= '.$pic.'
 
 		';
 

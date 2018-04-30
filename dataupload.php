@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-if ($_SESSION['LOGGED_ON'])
+if (!isset($_SESSION['LOGGED_ON']) || !$_GET)
+	header('location:index.php');
+
+if ($_SESSION['LOGGED_ON'] && $_GET)
 {
 	if (!file_exists("./pics"))
 		mkdir("./pics");
@@ -22,7 +25,7 @@ if ($_SESSION['LOGGED_ON'])
 	}
 	try
 	{
-		$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$req = $conn->prepare('INSERT INTO Photos (username, timet, url, UserID) VALUES (:username, NOW() , :url, :userID)');
 		$req->execute(array(
@@ -41,3 +44,14 @@ if ($_SESSION['LOGGED_ON'])
 }
 
  ?>
+<!-- <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
+		<title></title>
+	</head>
+	<body>
+
+	</body>
+</html> -->

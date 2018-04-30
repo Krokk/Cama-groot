@@ -1,7 +1,9 @@
 <?php
 	session_start();
+	if (!isset($_SESSION['LOGGED_ON']) || !$_POST)
+		header('location:index.php');
 
-	if ($_SESSION['LOGGED_ON'])
+	if ($_SESSION['LOGGED_ON'] && isset($_POST['filter']) && isset($_POST['data']))
 	{
 		if (!file_exists("./pics"))
 			mkdir("./pics");
@@ -26,7 +28,7 @@
 		}
 		try
 		{
-			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$req = $conn->prepare('INSERT INTO Photos (username, timet, url, UserID) VALUES (:username, NOW() , :url, :userID)');
 			$req->execute(array(
@@ -41,4 +43,6 @@
 		}
 		echo $filename;
 	}
+	else
+		header('location:index.php');
 ?>

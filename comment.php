@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	if (!isset($_SESSION['LOGGED_ON']))
+	if (!isset($_SESSION['LOGGED_ON']) || !$_GET)
 		header('location:index.php');
 
 	$pic = $_GET['pic'];
@@ -36,7 +36,7 @@
 			if ($_SESSION['LOGGED_ON'])
 			{
 				try{
-					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+					$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					$req = $conn->prepare("SELECT PhotoID FROM photos where url = :url");
 					$req->execute(array(
@@ -49,7 +49,7 @@
 					echo "Couldn't write in Database: " . $e->getMessage();
 				}
 				try{
-					$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+					$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					$req = $conn->prepare("SELECT text, author FROM comments where photoID = :photoid");
 					$req->execute(array(

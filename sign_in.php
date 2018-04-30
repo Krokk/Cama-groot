@@ -1,17 +1,23 @@
 <?php
 session_start();
-$_SESSION['message'] = '';
-$_SESSION['login_success'] = '';
-$_SESSION['login_err'] = '';
-$_SESSION['ID'] = '';
-$_SESSION['LOGGED_ON'] = NULL;
-$_SESSION['mailcomm'] = '';
+
+if (isset($_SESSION['LOGGED_ON']))
+	header('location:index.php');
+else
+{
+	$_SESSION['message'] = '';
+	$_SESSION['login_success'] = '';
+	$_SESSION['login_err'] = '';
+	$_SESSION['ID'] = '';
+	$_SESSION['LOGGED_ON'] = NULL;
+	$_SESSION['mailcomm'] = '';
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
 	{
 		$password = hash("sha512", $_POST['password']);
-		$con = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+		$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
 		$req->execute(array(
@@ -25,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			$_SESSION['LOGGED_ON'] = $_POST['username'];
 			try
 			{
-				$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$req = $conn->prepare("SELECT id FROM users where username = :username");
 				$req->execute(array(
@@ -39,13 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				$_SESSION['login_success'] = '';
 				$_SESSION['LOGGED_ON'] =	NULL;
 			}
+			$_SESSION['ID'] = $id;
 			try
 			{
-				$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$req = $conn->prepare("SELECT emailcomment FROM users where username = :username");
+				$req = $conn->prepare("SELECT emailcomment FROM users where id = :id");
 				$req->execute(array(
-					':username' => $_SESSION['LOGGED_ON']
+					':id' => $_SESSION['ID']
 				));
 				$emailcomment = $req->fetch(PDO::FETCH_COLUMN, 0);
 			}
@@ -54,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				echo "Couldn't get variable : " . $e->getMessage();
 			}
 			$_SESSION['mailcomm'] = $emailcomment;
-			$_SESSION['ID'] = $id;
 			header( "refresh:1;url=index.php");
 		}
 		else
@@ -74,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
 		<title></title>
 	</head>
 	<body>
@@ -111,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				<div class="clearfix" style="text-align: center;">
 				<a href="resetpsw.php"><button class="signup" type="button" name="resetpsw">I forgot my password</button></a>
 
-				<button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Sign Up</button>
+				<button type="submit" class="signup" name="clickme" style= "margin-left: 2%;margin-top: 2%";>Sign in</button>
 				</div>
 		</div>
 		</form>

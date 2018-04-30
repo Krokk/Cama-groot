@@ -1,11 +1,11 @@
+
 <?php
 	session_start();
 	if (!isset($_SESSION['LOGGED_ON']))
 		header('location:index.php');
-
 		try
 		{
-			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$update = $conn->prepare("SELECT * FROM users WHERE email = :newmail");
 			$update->bindParam(':newmail', $_POST['newmail']);
@@ -19,7 +19,7 @@
 		{
 		try
 		{
-			$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+			$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$update = $conn->prepare("UPDATE users SET email = :newmail WHERE username = :username");
 			$update->execute(array(
@@ -35,7 +35,19 @@
 		}
 		else
 		{
-			echo "Cette addresse email est deja utiliser.";
-			header( "refresh:1;url=user.php" );
+			echo "Please update email in settings";
+			header( "refresh:2;url=user.php" );
 		}
  ?>
+
+ <!DOCTYPE html>
+ <html>
+ 	<head>
+ 		<meta charset="utf-8">
+ 		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
+ 		<title></title>
+ 	</head>
+ 	<body>
+
+ 	</body>
+ </html>

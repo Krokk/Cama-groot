@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8">
 		<link rel="icon" type="image/png" href="./ressources/icons/favicon.png" />
-
 		<title></title>
 	</head>
 	<body>
@@ -33,11 +32,11 @@
 		{
 			try
 			{
-				$conn = new PDO("mysql:host=localhost;dbname=db_camagru", "root", "root");
+				$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$req = $conn->prepare('SELECT url FROM Photos WHERE username = :username ORDER BY timet DESC');
+				$req = $conn->prepare('SELECT url FROM Photos WHERE userID = :id ORDER BY timet DESC');
 				$req->execute(array(
-				':username' => $_SESSION['LOGGED_ON']
+				':id' => $_SESSION['ID']
 				));
 				$result = $req->fetchAll();
 			}
@@ -156,7 +155,13 @@ if (isset($_SESSION['LOGGED_ON']))
 		{
 			var response = xml.responseText;
 			photo.src = response;
-			console.log(response);
+			let div = document.createElement('div');
+			let img = document.createElement('img');
+			div.setAttribute('class', 'del');
+			img.src = response;
+			img.setAttribute('class', 'gallery');
+			div.append(img)
+			document.getElementById('droite').append(div);
 		}
    }
   startbutton.addEventListener('click', function(ev)
