@@ -47,7 +47,7 @@ $_SESSION['message'] = '';
 		}
 		catch(Exception $e)
 		{
-			echo "Couldn't count bro: " . $e->getMessage();
+			echo "Couldn't read database : " . $e->getMessage();
 		}
 
 		try

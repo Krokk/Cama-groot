@@ -16,26 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	try
 	{
-		$password = hash("sha512", $_POST['password']);
-		$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
-		$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '0'");
-		$req->execute(array(
-			':username' => $_POST['username'],
-			':password' => $password
-			));
-		}
-		catch (PDOexception $e)
-		{
-			echo "couldn't log you in : " . $e->getMessage();
-		}
-		if ($req->rowCount() > 0)
-		{
-			$_SESSION['login_err'] = "Your account is not activated yet, please check your mailbox or spam";
-		}
-		else {
-			try
-			{
+
 				$password = hash("sha512", $_POST['password']);
 				$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 				$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -87,6 +68,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				}
 				$_SESSION['mailcomm'] = $emailcomment;
 				header( "refresh:1;url=index.php");
+			}
+			else
+			{
+				try{
+			$password = hash("sha512", $_POST['password']);
+			$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
+			$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '0'");
+			$req->execute(array(
+				':username' => $_POST['username'],
+				':password' => $password
+				));
+			}
+			catch (PDOexception $e)
+			{
+				echo "couldn't log you in : " . $e->getMessage();
+			}
+			if ($req->rowCount() > 0)
+			{
+				$_SESSION['login_err'] = "Your account is not activated yet, please check your mailbox or spam";
 			}
 			else
 			{
