@@ -3,7 +3,6 @@
 
 	if (!file_exists("../pics"))
 		mkdir("../pics");
-	echo "Pute";
 	try
 	{
 		$conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -92,7 +91,6 @@
 		echo "Couldn't create table: " . $e->getMessage();
 	}
 	$conn = null;
-	echo "Pute2";
 ?>
 
 <!DOCTYPE html>
