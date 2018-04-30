@@ -19,63 +19,84 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		$password = hash("sha512", $_POST['password']);
 		$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
+		$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '0'");
 		$req->execute(array(
 			':username' => $_POST['username'],
 			':password' => $password
-		));
+			));
+		}
+		catch (PDOexception $e)
+		{
+			echo "couldn't log you in : " . $e->getMessage();
+		}
 		if ($req->rowCount() > 0)
 		{
-
-			$_SESSION['login_success'] = "You are logged on " . $_POST['username'];
-			$_SESSION['LOGGED_ON'] = $_POST['username'];
+			$_SESSION['login_err'] = "Your account is not activated yet, please check your mailbox or spam";
+		}
+		else {
 			try
 			{
-				$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
-				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$req = $conn->prepare("SELECT id FROM users where username = :username");
+				$password = hash("sha512", $_POST['password']);
+				$con = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
+				$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$req = $con->prepare("SELECT username FROM users WHERE username = :username AND password = :password AND activated = '1'");
 				$req->execute(array(
-					':username' => $_SESSION['LOGGED_ON']
-				));
-				$id = $req->fetch(PDO::FETCH_COLUMN, 0);
-			}
-			catch(PDOException $e)
+					':username' => $_POST['username'],
+					':password' => $password
+					));
+				}
+				catch (PDOexception $e)
+				{
+					echo "couldn't log you in : " . $e->getMessage();
+				}
+			if ($req->rowCount() > 0)
 			{
-				echo "Couldn't write in Database: " . $e->getMessage();
-				$_SESSION['login_success'] = '';
-				$_SESSION['LOGGED_ON'] =	NULL;
+
+				$_SESSION['login_success'] = "You are logged on " . $_POST['username'];
+				$_SESSION['LOGGED_ON'] = $_POST['username'];
+				try
+				{
+					$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
+					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					$req = $conn->prepare("SELECT id FROM users where username = :username");
+					$req->execute(array(
+						':username' => $_SESSION['LOGGED_ON']
+					));
+					$id = $req->fetch(PDO::FETCH_COLUMN, 0);
+				}
+				catch(PDOException $e)
+				{
+					echo "Couldn't write in Database: " . $e->getMessage();
+					$_SESSION['login_success'] = '';
+					$_SESSION['LOGGED_ON'] =	NULL;
+				}
+				$_SESSION['ID'] = $id;
+				try
+				{
+					$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
+					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					$req = $conn->prepare("SELECT emailcomment FROM users where id = :id");
+					$req->execute(array(
+						':id' => $_SESSION['ID']
+					));
+					$emailcomment = $req->fetch(PDO::FETCH_COLUMN, 0);
+				}
+				catch (Exception $e)
+				{
+					echo "Couldn't get variable : " . $e->getMessage();
+				}
+				$_SESSION['mailcomm'] = $emailcomment;
+				header( "refresh:1;url=index.php");
 			}
-			$_SESSION['ID'] = $id;
-			try
+			else
 			{
-				$conn = new PDO("mysql:host=127.0.0.1;dbname=db_camagru", "root", "root");
-				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$req = $conn->prepare("SELECT emailcomment FROM users where id = :id");
-				$req->execute(array(
-					':id' => $_SESSION['ID']
-				));
-				$emailcomment = $req->fetch(PDO::FETCH_COLUMN, 0);
+				$_SESSION['login_err'] = "Username or password incorrect";
 			}
-			catch (Exception $e)
-			{
-				echo "Couldn't get variable : " . $e->getMessage();
-			}
-			$_SESSION['mailcomm'] = $emailcomment;
-			header( "refresh:1;url=index.php");
-		}
-		else
-		{
-			$_SESSION['login_err'] = "Username or password incorrect";
 		}
 
-	}
-	catch (PDOexception $e)
-	{
-		echo "couldn't log you in : " . $e->getMessage();
-	}
 }
 
-?>
+ ?>
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
@@ -86,23 +107,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<body>
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
-<?php
+ 			<?php
 
-if (isset($_SESSION['LOGGED_ON']))
-{
-	echo '<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-	echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-	echo '<a href="logout.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logout.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-}
+ 			if (isset($_SESSION['LOGGED_ON']))
+ 			{
+				echo '<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="logout.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logout.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+			}
 
-else
-{
-	echo '<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-	echo '<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-	echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-}
+ 			else
+ 			{
+				echo '<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+ 			}
 
-?>
+ 			?>
 		</div>
 		<div class="main">
 		<form class="modal-content" action="sign_in.php" method="post">

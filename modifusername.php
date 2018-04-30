@@ -48,8 +48,8 @@
 			header('location:user.php');
 		}
 		else {
-			echo "Please update username in settings";
 			header( "refresh:2;url=user.php" );
+			echo "Please update username in settings";
 		}
  ?>
 
