@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		$req->execute(array(
 			':username' => $_POST['username'],
 			':password' => $password
-			));
+		));
 		if ($req->rowCount() > 0)
 		{
 
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	}
 }
 
- ?>
+?>
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
@@ -86,23 +86,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<body>
 		<div class="header">
 			<a href="index.php"><button class="title" name="button">CAMAGRU</button><a/>
- 			<?php
+<?php
 
- 			if (isset($_SESSION['LOGGED_ON']))
- 			{
-				echo '<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-				echo '<a href="logout.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logout.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-			}
+if (isset($_SESSION['LOGGED_ON']))
+{
+	echo '<a href="user.php"><button class="icon" type="button" name="settings"><img src="./ressources/icons/settings.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+	echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+	echo '<a href="logout.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logout.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+}
 
- 			else
- 			{
-				echo '<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-				echo '<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
-				echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
- 			}
+else
+{
+	echo '<a href="sign_in.php"><button class="icon" type="button" name="Login"><img src="./ressources/icons/logins.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+	echo '<a href="sign_up.php"><button class="icon" type="button" name="Sign up"><img src="./ressources/icons/registericon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+	echo '<a href="gallery.php"><button class="icon" type="button" name="Gallery"><img src="./ressources/icons/galleryicon.png" style="width:4.5vw;height:4vw;"</img></button></a>';
+}
 
- 			?>
+?>
 		</div>
 		<div class="main">
 		<form class="modal-content" action="sign_in.php" method="post">

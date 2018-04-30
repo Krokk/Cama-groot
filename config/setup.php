@@ -91,6 +91,8 @@
 		echo "Couldn't create table: " . $e->getMessage();
 	}
 	$conn = null;
+	header( "refresh:2;url=../index.php" );
+	echo "Database created successfully, redirecting to homepage";
 ?>
 
 <!DOCTYPE html>

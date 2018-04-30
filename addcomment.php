@@ -63,7 +63,7 @@
 		------------------------
 
 		Click on this link to see more:
-		http://localhost:3030/comment.php?pic= '.$pic.'
+		http://localhost:3000/comment.php?pic= '.$pic.'
 
 		';
 

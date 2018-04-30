@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 ------------------------
 
                 Please click this link to reset your account password:
-                http://127.0.0.1:8080/verifypsw.php?email='.$email.'&conflink='.$conflink.'
+                http://localhost:3000/verifypsw.php?email='.$email.'&conflink='.$conflink.'
 
                 ';
                 $headers = 'From:noreply@camagru.com' . "\r\n";
